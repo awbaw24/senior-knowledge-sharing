@@ -166,6 +166,9 @@
     <section id="knowledge" class="knowledge-base">
         <div class="container">
             <h2>📚 지식 저장소</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+                <strong>📂 주요 분야:</strong> 🏗️ 건축토목 | 🏭 제조업 | 🌾 농어업 | 🏢 서비스업
+            </p>
             <div class="knowledge-tabs">
                 <button class="tab-btn active" data-tab="cases" onclick="switchTab('cases', this)">프로젝트 사례</button>
                 <button class="tab-btn" data-tab="guides" onclick="switchTab('guides', this)">기술 가이드</button>
@@ -193,7 +196,7 @@
                     </article>
                     
                     <article class="knowledge-item" onclick="openKnowledgeDetail('farming')">
-                        <div class="knowledge-badge">🌾 농업</div>
+                        <div class="knowledge-badge">🌾 농어업</div>
                         <h3>귀농 첫해 300% 수확 성공기</h3>
                         <p>송농부의 스마트팜 기술로 달성한 놀라운 귀농 성과</p>
                         <div class="knowledge-meta">
@@ -210,7 +213,7 @@
                     </article>
                     
                     <article class="knowledge-item" onclick="openKnowledgeDetail('architecture')">
-                        <div class="knowledge-badge">🏗️ 건축</div>
+                        <div class="knowledge-badge">🏗️ 건축토목</div>
                         <h3>인허가 절차 완전 정복 가이드</h3>
                         <p>이건축 건축사의 35년 경험이 담긴 실무 완전 가이드</p>
                         <div class="knowledge-meta">
@@ -225,13 +228,64 @@
                             <span class="tag">법규해석</span>
                         </div>
                     </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('restaurant')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>카페 창업 6개월 만에 흑자 달성기</h3>
+                        <p>박카페 대표의 25년 외식업 노하우로 성공한 카페 창업 스토리</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 박카페 대표</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.07</span>
+                            <span><i class="fas fa-eye"></i> 1,789회</span>
+                            <span><i class="fas fa-star"></i> 4.7점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">카페창업</span>
+                            <span class="tag">매장운영</span>
+                            <span class="tag">고객서비스</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('logistics')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>물류센터 효율 200% 향상 프로젝트</h3>
+                        <p>최물류 전문가의 30년 물류 노하우로 이룬 혁신적 개선 사례</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 최물류 전문가</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.12</span>
+                            <span><i class="fas fa-eye"></i> 943회</span>
+                            <span><i class="fas fa-star"></i> 4.9점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">물류최적화</span>
+                            <span class="tag">재고관리</span>
+                            <span class="tag">배송효율</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('retail')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>소상공인 매출 300% 증대 성공기</h3>
+                        <p>김소상 대표의 디지털 마케팅 전환으로 이룬 극적인 매출 성장</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 김소상 대표</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.09</span>
+                            <span><i class="fas fa-eye"></i> 1,567회</span>
+                            <span><i class="fas fa-star"></i> 4.8점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">디지털마케팅</span>
+                            <span class="tag">온라인판매</span>
+                            <span class="tag">고객관리</span>
+                        </div>
+                    </article>
                 </div>
             </div>
             
             <div id="guides" class="tab-content">
                 <div class="knowledge-grid">
                     <article class="knowledge-item" onclick="openKnowledgeDetail('cnc-guide')">
-                        <div class="knowledge-badge">⚙️ 기술</div>
+                        <div class="knowledge-badge">🏭 제조업</div>
                         <h3>CNC 가공 기초부터 고급까지</h3>
                         <p>현장에서 바로 쓸 수 있는 CNC 가공 완전 마스터 가이드</p>
                         <div class="knowledge-meta">
@@ -242,7 +296,7 @@
                     </article>
                     
                     <article class="knowledge-item" onclick="openKnowledgeDetail('smart-farm-guide')">
-                        <div class="knowledge-badge">🌱 농업</div>
+                        <div class="knowledge-badge">🌾 농어업</div>
                         <h3>스마트팜 구축 및 운영 가이드</h3>
                         <p>초보자도 쉽게 따라할 수 있는 스마트팜 완전 구축 가이드</p>
                         <div class="knowledge-meta">
@@ -251,13 +305,57 @@
                             <span><i class="fas fa-download"></i> 342회 다운로드</span>
                         </div>
                     </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('construction-guide')">
+                        <div class="knowledge-badge">🏗️ 건축토목</div>
+                        <h3>건축 현장 안전관리 완전 가이드</h3>
+                        <p>사고 제로를 위한 건축 현장 안전관리 체크리스트와 실무 노하우</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 이건축 건축사</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.11</span>
+                            <span><i class="fas fa-download"></i> 789회 다운로드</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('cafe-startup-guide')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>카페 창업 성공 가이드</h3>
+                        <p>입지 선정부터 메뉴 개발, 운영까지 카페 창업 완전 가이드</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 박카페 대표</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.13</span>
+                            <span><i class="fas fa-download"></i> 456회 다운로드</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('customer-service-guide')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>고객 서비스 마스터 가이드</h3>
+                        <p>20년 호텔리어가 전하는 완벽한 고객 서비스 노하우</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 정호텔 매니저</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.14</span>
+                            <span><i class="fas fa-download"></i> 623회 다운로드</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('digital-marketing-guide')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>소상공인 디지털 마케팅 가이드</h3>
+                        <p>SNS, 블로그, 온라인 쇼핑몰 활용한 매출 증대 전략</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 김소상 대표</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.15</span>
+                            <span><i class="fas fa-download"></i> 834회 다운로드</span>
+                        </div>
+                    </article>
                 </div>
             </div>
             
             <div id="tips" class="tab-content">
                 <div class="knowledge-grid">
                     <article class="knowledge-item" onclick="openKnowledgeDetail('field-tips')">
-                        <div class="knowledge-badge">💡 노하우</div>
+                        <div class="knowledge-badge">💡 공통</div>
                         <h3>현장에서만 배울 수 있는 10가지 비법</h3>
                         <p>책에서는 절대 알 수 없는 실무 핵심 노하우 모음집</p>
                         <div class="knowledge-meta">
@@ -266,19 +364,107 @@
                             <span><i class="fas fa-heart"></i> 234명이 좋아함</span>
                         </div>
                     </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('service-tips')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>서비스업 매출 증대 5가지 황금 법칙</h3>
+                        <p>고객 만족도와 매출을 동시에 올리는 검증된 서비스업 노하우</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 서비스업 전문가들</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.16</span>
+                            <span><i class="fas fa-heart"></i> 189명이 좋아함</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('hospitality-tips')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>호스피탈리티 마스터 비법 7가지</h3>
+                        <p>고객의 마음을 사로잡는 진정한 서비스의 비밀</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 정호텔 매니저</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.14</span>
+                            <span><i class="fas fa-heart"></i> 156명이 좋아함</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('franchise-tips')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>프랜차이즈 성공 운영 노하우</h3>
+                        <p>본부와의 상생, 매장 관리, 직원 교육의 핵심 포인트</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 윤프랜 대표</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.13</span>
+                            <span><i class="fas fa-heart"></i> 203명이 좋아함</span>
+                        </div>
+                    </article>
                 </div>
             </div>
             
             <div id="videos" class="tab-content">
                 <div class="knowledge-grid">
                     <article class="knowledge-item" onclick="openKnowledgeDetail('video-welding')">
-                        <div class="knowledge-badge">🎥 동영상</div>
+                        <div class="knowledge-badge">🏭 제조업</div>
                         <h3>특수용접 기법 실전 강의</h3>
                         <p>최용접 전문가의 32년 노하우가 담긴 실제 작업 영상</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 최용접 전문가</span>
                             <span><i class="fas fa-clock"></i> 2시간 30분</span>
                             <span><i class="fas fa-play"></i> 1,456회 재생</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-cafe')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>카페 바리스타 마스터 클래스</h3>
+                        <p>박카페 대표의 완벽한 커피 추출과 라떼아트 실전 강의</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 박카페 대표</span>
+                            <span><i class="fas fa-clock"></i> 1시간 45분</span>
+                            <span><i class="fas fa-play"></i> 892회 재생</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-customer-service')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>고객 응대 스킬 마스터 강의</h3>
+                        <p>호텔 업계 20년 베테랑이 전하는 완벽한 고객 서비스 기법</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 정호텔 매니저</span>
+                            <span><i class="fas fa-clock"></i> 3시간 15분</span>
+                            <span><i class="fas fa-play"></i> 1,234회 재생</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-digital-marketing')">
+                        <div class="knowledge-badge">🏢 서비스업</div>
+                        <h3>소상공인 SNS 마케팅 실전 강의</h3>
+                        <p>인스타그램, 네이버 블로그로 매출 300% 올린 실제 방법</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 김소상 대표</span>
+                            <span><i class="fas fa-clock"></i> 2시간 20분</span>
+                            <span><i class="fas fa-play"></i> 2,156회 재생</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-farming')">
+                        <div class="knowledge-badge">🌾 농어업</div>
+                        <h3>스마트팜 설치부터 운영까지</h3>
+                        <p>귀농 성공 농부의 스마트팜 A-Z 완전 정복 영상</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 송농부</span>
+                            <span><i class="fas fa-clock"></i> 4시간 10분</span>
+                            <span><i class="fas fa-play"></i> 967회 재생</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-construction')">
+                        <div class="knowledge-badge">🏗️ 건축토목</div>
+                        <h3>건축 현장 안전관리 실무 강의</h3>
+                        <p>35년 건축사가 전하는 현장 안전관리의 모든 것</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 이건축 건축사</span>
+                            <span><i class="fas fa-clock"></i> 2시간 50분</span>
+                            <span><i class="fas fa-play"></i> 1,789회 재생</span>
                         </div>
                     </article>
                 </div>
