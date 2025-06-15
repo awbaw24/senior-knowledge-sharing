@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 서비스 안내 - 은퇴자 지식 공유 플랫폼</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .service-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .service-section:last-child {
+            border-bottom: none;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card.featured {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+            border-top: 1px solid #eee;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>은퇴자 지식 공유</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="index.html#mentors">멘토 찾기</a></li>
+                <li><a href="#service-overview">서비스 소개</a></li>
+                <li><a href="#pricing">요금제</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="admin.html">관리자</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="location.href='index.html'">메인으로</button>
+                <button class="btn-signup" onclick="openModal('signup')">회원가입</button>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 서비스 히어로 섹션 -->
+    <section class="service-hero">
+        <div class="container">
+            <h1>📋 완전한 멘토링 서비스</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">은퇴 전문가와 학습자를 연결하는 체계적인 지식 공유 플랫폼</p>
+            <div style="margin-top: 2rem;">
+                <button class="btn-primary" onclick="location.href='index.html'" style="margin: 0.5rem;">
+                    🏠 메인으로 돌아가기
+                </button>
+                <button class="btn-secondary" onclick="location.href='#service-overview'" style="margin: 0.5rem;">
+                    📖 서비스 둘러보기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 개요 -->
+    <section id="service-overview" class="service-section">
+        <div class="container">
+            <h2>🎯 서비스 개요</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>1:1 맞춤 멘토링</h3>
+                    <p>30년 이상 경력의 은퇴 전문가와 직접 연결되어 개인 맞춤형 지식 전수를 받을 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>체계적인 지식 저장소</h3>
+                    <p>분야별로 정리된 실무 노하우와 성공 사례를 언제든지 열람하고 학습할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>지역별 커뮤니티</h3>
+                    <p>같은 지역의 멘토와 멘티들이 모여 오프라인 모임과 지속적인 관계를 형성할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>실시간 매칭 시스템</h3>
+                    <p>AI 기반 알고리즘으로 최적의 멘토-멘티 매칭을 실시간으로 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>성과 추적 관리</h3>
+                    <p>멘토링 진행 상황과 성과를 체계적으로 관리하고 성공 사례를 공유합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 고객 지원</h3>
+                    <p>언제든지 문의할 수 있는 고객 지원 시스템과 커뮤니티 관리자가 상주합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 이용 절차 -->
+    <section id="how-it-works" class="service-section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>🔄 서비스 이용 절차</h2>
+            
+            <h3 style="margin-top: 3rem;">👨‍🎓 멘티 (학습자) 이용 절차</h3>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>회원가입 및 프로필 작성</h4>
+                    <p>학습 목표, 관심 분야, 현재 수준을 입력하여 맞춤형 매칭 준비</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>멘토 검색 및 매칭</h4>
+                    <p>AI 추천 또는 직접 검색으로 최적의 멘토를 찾아 멘토링 신청</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>멘토와 상담 및 계획 수립</h4>
+                    <p>화상 또는 오프라인 상담을 통해 학습 계획과 일정 조율</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>정기 멘토링 진행</h4>
+                    <p>주 1-2회 정기 세션으로 이론 학습과 실무 경험 전수</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h4>성과 평가 및 피드백</h4>
+                    <p>월별 성과 리뷰와 지속적인 개선 방향 설정</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">👨‍🏫 멘토 (전문가) 이용 절차</h3>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>멘토 등록 및 검증</h4>
+                    <p>경력 증빙서류 제출 후 관리자 검토를 통한 멘토 자격 승인</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>전문 분야 및 프로필 설정</h4>
+                    <p>전문성, 경력 사항, 멘토링 가능 시간 등 상세 정보 입력</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>멘티 매칭 및 선택</h4>
+                    <p>시스템 추천 멘티 중 적합한 학습자 선택 및 수락</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>멘토링 계획 수립</h4>
+                    <p>멘티와 상담하여 맞춤형 학습 로드맵과 목표 설정</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h4>지속적인 지도 및 평가</h4>
+                    <p>정기 세션 진행과 멘티 성장 과정 모니터링</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 요금제 -->
+    <section id="pricing" class="service-section">
+        <div class="container">
+            <h2>💰 투명한 요금제</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">은퇴자 전문가들의 귀중한 경험을 합리적인 가격에 제공합니다</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>🌱 베이직</h3>
+                    <div class="price">무료</div>
+                    <p>기본 서비스 체험</p>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✅ 지식 저장소 열람</li>
+                        <li>✅ 커뮤니티 참여</li>
+                        <li>✅ 월 1회 멘토 상담</li>
+                        <li>✅ 기본 성공사례 확인</li>
+                        <li>❌ 1:1 정기 멘토링</li>
+                        <li>❌ 전문 자료 다운로드</li>
+                    </ul>
+                    <button class="btn-secondary" onclick="openModal('signup')">무료 가입</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>🚀 프리미엄</h3>
+                    <div class="price">월 9만원</div>
+                    <p>완전한 멘토링 서비스</p>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✅ 모든 베이직 기능</li>
+                        <li>✅ 주 1회 1:1 멘토링 (월 4회)</li>
+                        <li>✅ 전문 자료 무제한 다운로드</li>
+                        <li>✅ 우선 멘토 매칭</li>
+                        <li>✅ 화상회의 지원</li>
+                        <li>✅ 개인 성과 리포트</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openModal('premium')">프리미엄 시작</button>
+                    <div style="background: #ffd700; color: #333; padding: 0.5rem; margin-top: 1rem; border-radius: 5px; font-weight: bold;">
+                        🎉 첫 달 50% 할인!
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>🏢 기업</h3>
+                    <div class="price">맞춤 견적</div>
+                    <p>조직 전체 교육 솔루션</p>
+                    <ul style="text-align: left; margin: 2rem 0;">
+                        <li>✅ 모든 프리미엄 기능</li>
+                        <li>✅ 기업 전용 멘토 풀</li>
+                        <li>✅ 그룹 멘토링 세션</li>
+                        <li>✅ 맞춤형 교육 프로그램</li>
+                        <li>✅ 전담 고객 관리자</li>
+                        <li>✅ 상세한 성과 분석 대시보드</li>
+                    </ul>
+                    <button class="btn-secondary" onclick="openModal('enterprise')">문의하기</button>
+                </div>
+            </div>
+            
+            <!-- 특별 할인 정보 -->
+            <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 10px; margin-top: 2rem; text-align: center;">
+                <h3>🎁 특별 혜택</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div>
+                        <strong>🎓 학생 할인</strong><br>
+                        학생증 인증 시 30% 할인
+                    </div>
+                    <div>
+                        <strong>👥 단체 할인</strong><br>
+                        5명 이상 시 20% 할인
+                    </div>
+                    <div>
+                        <strong>🌾 농어촌 지원</strong><br>
+                        농어촌 거주자 50% 할인
+                    </div>
+                    <div>
+                        <strong>🏆 성과 보장</strong><br>
+                        30일 무조건 환불 보장
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="service-section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>❓ 자주 묻는 질문 (FAQ)</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 멘토의 전문성은 어떻게 검증하나요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 모든 멘토는 다음과 같은 엄격한 검증 과정을 거칩니다:</p>
+                    <ul>
+                        <li>• <strong>경력 증빙</strong>: 재직증명서, 사업자등록증, 자격증 등 관련 서류 제출</li>
+                        <li>• <strong>전문성 평가</strong>: 해당 분야 전문가 패널의 인터뷰 및 평가</li>
+                        <li>• <strong>멘토링 역량</strong>: 커뮤니케이션 능력 및 교육 경험 평가</li>
+                        <li>• <strong>지속적 관리</strong>: 멘티 피드백을 통한 정기적인 품질 관리</li>
+                    </ul>
+                    <p>승인된 멘토만이 플랫폼에서 활동할 수 있으며, 평점 4.5점 이상 유지가 필수입니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 멘토링은 어떤 방식으로 진행되나요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 다양한 방식으로 멘토링이 진행됩니다:</p>
+                    <ul>
+                        <li>• <strong>화상 멘토링</strong>: Zoom, Google Meet 등을 활용한 온라인 세션</li>
+                        <li>• <strong>오프라인 만남</strong>: 카페, 사무실, 현장 방문 등 직접 만남</li>
+                        <li>• <strong>실습 위주</strong>: 실제 업무 환경에서의 실습과 피드백</li>
+                        <li>• <strong>과제 및 프로젝트</strong>: 실무 과제를 통한 단계별 성장</li>
+                        <li>• <strong>그룹 세션</strong>: 필요시 동일 분야 멘티들과의 그룹 학습</li>
+                    </ul>
+                    <p>멘토와 멘티가 상호 합의하여 가장 효과적인 방식을 선택할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 결제 및 환불 정책은 어떻게 되나요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 투명하고 공정한 결제 시스템을 운영합니다:</p>
+                    <ul>
+                        <li>• <strong>결제 방식</strong>: 신용카드, 계좌이체, 가상계좌 등 다양한 방법 지원</li>
+                        <li>• <strong>정기 결제</strong>: 매월 자동 결제로 편리하게 이용</li>
+                        <li>• <strong>30일 환불 보장</strong>: 서비스가 만족스럽지 않으면 30일 내 100% 환불</li>
+                        <li>• <strong>부분 환불</strong>: 미사용 세션에 대해서는 비례 환불</li>
+                        <li>• <strong>할부 결제</strong>: 6개월까지 무이자 할부 가능</li>
+                    </ul>
+                    <p>모든 결제는 안전한 PG사를 통해 처리되며, 개인정보는 암호화 보호됩니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 농어촌 활성화 프로그램은 무엇인가요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 농어촌 지역 발전을 위한 특별 프로그램입니다:</p>
+                    <ul>
+                        <li>• <strong>귀농/귀촌 멘토링</strong>: 성공한 농업인들의 실전 노하우 전수</li>
+                        <li>• <strong>6차 산업화 지원</strong>: 농산물 가공, 유통, 관광 연계 사업 지도</li>
+                        <li>• <strong>스마트팜 구축</strong>: ICT 기술을 활용한 현대적 농업 기법</li>
+                        <li>• <strong>농촌체험 프로그램</strong>: 도시민 대상 체험 사업 개발</li>
+                        <li>• <strong>지역 브랜딩</strong>: 지역 특산품 브랜드화 및 마케팅</li>
+                    </ul>
+                    <p>농어촌 거주자는 50% 할인 혜택과 우선 지원을 받을 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 멘토링의 실제 효과는 어느 정도인가요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 실제 성과 데이터를 기반으로 한 검증된 효과:</p>
+                    <ul>
+                        <li>• <strong>취업률 향상</strong>: 멘토링 참여자의 82%가 6개월 내 취업 성공</li>
+                        <li>• <strong>업무 효율성</strong>: 평균 업무 효율 300% 향상 (측정 가능 업무 기준)</li>
+                        <li>• <strong>소득 증가</strong>: 창업/이직 성공자 평균 소득 40% 증가</li>
+                        <li>• <strong>만족도</strong>: 멘티 만족도 평균 4.8/5.0점</li>
+                        <li>• <strong>장기 관계</strong>: 85%의 멘토-멘티가 프로그램 종료 후에도 지속적 관계 유지</li>
+                    </ul>
+                    <p>구체적인 성공 사례는 <a href="index.html#success">성공사례 페이지</a>에서 확인하실 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 기술 지원 및 고객 서비스는 어떻게 받나요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 24시간 고객 지원 시스템을 운영합니다:</p>
+                    <ul>
+                        <li>• <strong>실시간 채팅</strong>: 웹사이트 우하단 챗봇으로 즉시 문의</li>
+                        <li>• <strong>이메일 지원</strong>: support@awbaw24.com (24시간 내 답변)</li>
+                        <li>• <strong>전화 상담</strong>: 02-1234-5678 (평일 9시~18시)</li>
+                        <li>• <strong>원격 지원</strong>: 화면 공유를 통한 직접적인 기술 지원</li>
+                        <li>• <strong>FAQ 및 가이드</strong>: 자세한 이용 가이드 및 튜토리얼 제공</li>
+                    </ul>
+                    <p>프리미엄 회원은 전담 고객 관리자가 배정되어 더욱 신속한 지원을 받을 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 고객 지원 -->
+    <section class="service-section">
+        <div class="container">
+            <h2>🎧 고객 지원</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fas fa-comments" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>실시간 채팅</h3>
+                    <p>웹사이트에서 바로 문의하세요</p>
+                    <button class="btn-primary" onclick="openLiveChat()">채팅 시작</button>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fas fa-envelope" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>이메일 문의</h3>
+                    <p>상세한 문의사항을 이메일로</p>
+                    <button class="btn-secondary" onclick="location.href='mailto:support@awbaw24.com'">이메일 보내기</button>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fas fa-phone" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>전화 상담</h3>
+                    <p>직접 통화로 빠른 해결</p>
+                    <button class="btn-secondary" onclick="location.href='tel:02-1234-5678'">전화걸기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏛️ 은퇴자 지식 공유</h3>
+                    <p>평생에 걸쳐 쌓아온 소중한 경험과 지혜를 다음 세대에게 전하는 플랫폼</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="index.html">홈</a></li>
+                        <li><a href="index.html#mentors">멘토 찾기</a></li>
+                        <li><a href="#pricing">요금제</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="admin.html">관리자</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>연락처</h4>
+                    <p><i class="fas fa-envelope"></i> support@awbaw24.com</p>
+                    <p><i class="fas fa-phone"></i> 02-1234-5678</p>
+                    <div class="social-links">
+                        <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:support@awbaw24.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모달 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                });
+                document.querySelectorAll('.faq-question i').forEach(ico => {
+                    ico.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open clicked FAQ
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function openLiveChat() {
+            // 실제 구현에서는 채팅 위젯을 여는 함수
+            alert('💬 곧 실시간 채팅 서비스가 시작됩니다!\n\n현재는 이메일(support@awbaw24.com)로 문의해 주세요.');
+        }
+
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modalContent');
+            
+            let modalHTML = '';
+            
+            switch(type) {
+                case 'signup':
+                    modalHTML = `
+                        <h2>🎉 회원가입</h2>
+                        <form style="max-width: 400px;">
+                            <div style="margin: 1rem 0;">
+                                <label>이름</label>
+                                <input type="text" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <label>이메일</label>
+                                <input type="email" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <label>관심 분야</label>
+                                <select style="width: 100%; padding: 10px; margin-top: 5px;">
+                                    <option>제조업</option>
+                                    <option>건축/토목</option>
+                                    <option>농업/어업</option>
+                                    <option>서비스업</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">가입하기</button>
+                        </form>
+                    `;
+                    break;
+                case 'premium':
+                    modalHTML = `
+                        <h2>🚀 프리미엄 멤버십</h2>
+                        <div style="text-align: center;">
+                            <h3 style="color: #667eea;">월 9만원 → 첫 달 4만 5천원</h3>
+                            <ul style="text-align: left; margin: 2rem 0;">
+                                <li>✅ 주 1회 1:1 멘토링 (월 4회)</li>
+                                <li>✅ 전문 자료 무제한 다운로드</li>
+                                <li>✅ 우선 멘토 매칭</li>
+                                <li>✅ 화상회의 지원</li>
+                                <li>✅ 개인 성과 리포트</li>
+                            </ul>
+                            <button class="btn-primary" style="width: 100%;" onclick="alert('결제 시스템 준비중입니다!')">프리미엄 시작하기</button>
+                        </div>
+                    `;
+                    break;
+                case 'enterprise':
+                    modalHTML = `
+                        <h2>🏢 기업 문의</h2>
+                        <form style="max-width: 400px;">
+                            <div style="margin: 1rem 0;">
+                                <label>회사명</label>
+                                <input type="text" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <label>담당자명</label>
+                                <input type="text" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <label>연락처</label>
+                                <input type="tel" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <label>예상 이용자 수</label>
+                                <input type="number" style="width: 100%; padding: 10px; margin-top: 5px;">
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">견적 요청</button>
+                        </form>
+                    `;
+                    break;
+            }
+            
+            content.innerHTML = modalHTML;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // 모달 외부 클릭 시 닫기
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
