@@ -5,14 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌾 농어촌 활성화 프로젝트 - 은퇴자 지식 공유</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Paperlogy:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family: 'Paperlogy', sans-serif;
+        }
+        
         .rural-hero {
             background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             color: white;
             padding: 120px 0 80px;
             text-align: center;
             margin-top: 70px;
+        }
+        
+        .rural-hero h1 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            font-size: 1.3rem;
         }
         
         .project-card {
@@ -22,6 +40,18 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
             transition: all 0.3s ease;
+        }
+        
+        .project-card h3 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
         }
         
         .project-card:hover {
@@ -34,8 +64,9 @@
             padding: 0.3rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 1rem;
+            font-family: 'Paperlogy', sans-serif;
         }
         
         .status-active {
@@ -67,11 +98,17 @@
             border-radius: 10px;
         }
         
+        .metric-item div {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 500;
+        }
+        
         .metric-number {
             font-size: 2rem;
-            font-weight: bold;
+            font-weight: 700;
             color: #27ae60;
             display: block;
+            font-family: 'Paperlogy', sans-serif;
         }
         
         .region-map {
@@ -89,6 +126,24 @@
             background: white;
             border-radius: 10px;
             transition: all 0.3s ease;
+        }
+        
+        .region-item h4 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .region-item p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .region-item small {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            color: #666;
         }
         
         .region-item:hover {
@@ -109,6 +164,44 @@
             padding: 2rem;
             border-radius: 15px;
             margin: 2rem 0;
+        }
+        
+        .success-story h3 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .success-story p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .success-story em {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        h2 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        button {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -340,19 +433,19 @@
 
     <script>
         function joinAsMentor() {
-            alert('농어촌 멘토 신청 페이지로 이동합니다.\n\n특별 혜택:\n• 멘토링 활동비 지원\n• 지역 특산품 할인\n• 농어촌 체험 프로그램 무료 참여');
+            alert('농어촌 멘토 신청 페이지로 이동합니다.\\n\\n특별 혜택:\\n• 멘토링 활동비 지원\\n• 지역 특산품 할인\\n• 농어촌 체험 프로그램 무료 참여');
         }
         
         function proposeProject() {
-            const project = prompt('어떤 농어촌 활성화 프로젝트를 제안하시겠습니까?\n\n예시:\n- 스마트팜 도입\n- 농촌 관광 개발\n- 특산품 브랜딩\n- 직거래 플랫폼');
+            const project = prompt('어떤 농어촌 활성화 프로젝트를 제안하시겠습니까?\\n\\n예시:\\n- 스마트팜 도입\\n- 농촌 관광 개발\\n- 특산품 브랜딩\\n- 직거래 플랫폼');
             
             if (project) {
-                alert(`훌륭한 아이디어입니다!\n\n"${project}"\n\n담당자가 검토 후 연락드리겠습니다.`);
+                alert(`훌륭한 아이디어입니다!\\n\\n"${project}"\\n\\n담당자가 검토 후 연락드리겠습니다.`);
             }
         }
         
         function supportProject() {
-            alert('후원 방법:\n\n💰 직접 후원\n• 프로젝트별 후원\n• 정기 후원\n\n🤝 현물 후원\n• 장비 및 기술 지원\n• 교육 프로그램 제공\n\n📞 문의: rural@awbaw24.com');
+            alert('후원 방법:\\n\\n💰 직접 후원\\n• 프로젝트별 후원\\n• 정기 후원\\n\\n🤝 현물 후원\\n• 장비 및 기술 지원\\n• 교육 프로그램 제공\\n\\n📞 문의: rural@awbaw24.com');
         }
         
         // 실시간 업데이트 시뮬레이션
