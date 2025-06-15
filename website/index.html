@@ -27,6 +27,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 500;
         }
         
         .sub-tab-btn:hover {
@@ -97,6 +99,12 @@
             <h1>🌟 평생의 지혜를 다음 세대에게</h1>
             <p class="hero-subtitle">은퇴 전문가들의 귀중한 경험과 노하우를 체계적으로 보존하고,<br>후배들과의 멘토링을 통해 지속가능한 지식 전수 문화를 만들어갑니다.</p>
             
+            <!-- 완전 무료 서비스 강조 -->
+            <div style="background: linear-gradient(45deg, #28a745, #20c997); color: white; padding: 1.5rem; border-radius: 15px; margin: 2rem auto; max-width: 600px; text-align: center;">
+                <h3 style="margin-bottom: 0.5rem;">💚 100% 무료 멘토링 서비스</h3>
+                <p style="margin-bottom: 0;">기부로 운영되는 사회공헌 플랫폼 • 모든 서비스 완전 무료 이용</p>
+            </div>
+            
             <!-- 실시간 통계 -->
             <div class="hero-stats">
                 <div class="stat-item">
@@ -160,7 +168,7 @@
                     <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
                     <h3>지역별 커뮤니티</h3>
                     <p>지역 기반 오프라인 모임과 네트워킹</p>
-                    <button class="btn-secondary" onclick="location.href='service.html#pricing'">요금제 보기</button>
+                    <button class="btn-secondary" onclick="location.href='service.html#donation'">기부안내 보기</button>
                 </div>
                 <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
                     <i class="fas fa-question-circle" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
@@ -608,13 +616,16 @@
                     <p>평생에 걸쳐 쌓아온 소중한 경험과 지혜를 다음 세대에게 전하는 플랫폼</p>
                     
                     <!-- 실시간 현황 -->
-                    <div class="real-time-status" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
-                        <h4 style="margin-bottom: 0.5rem; color: #667eea;">📊 실시간 현황</h4>
+                    <div class="real-time-status" style="margin-top: 1.5rem; padding: 1rem; background: rgba(40, 167, 69, 0.1); border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: #28a745;">📊 실시간 현황</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.9rem;">
                             <div>• 온라인 멘토: <span id="onlineMentors">12명</span></div>
                             <div>• 진행중인 멘토링: <span id="activeMentoring">28건</span></div>
                             <div>• 금주 신규가입: <span id="weeklySignup">47명</span></div>
                             <div>• 성공사례 증가: <span id="monthlySuccess">+8건</span></div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.5rem; background: #28a745; color: white; border-radius: 5px; text-align: center;">
+                            💚 100% 무료 서비스 • 기부로 운영되는 사회공헌 플랫폼
                         </div>
                     </div>
                 </div>
@@ -632,7 +643,7 @@
                     
                     <!-- 서비스 바로가기 -->
                     <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;">
-                        <h5 style="color: #667eea;">⚡ 빠른 서비스</h5>
+                        <h5 style="color: #28a745;">⚡ 빠른 서비스</h5>
                         <button onclick="openModal('mentor')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
                             🧑‍🏫 멘토 등록
                         </button>
@@ -659,8 +670,8 @@
                     </div>
                     
                     <!-- 서비스 현황 -->
-                    <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #667eea;">
-                        <h5 style="margin-bottom: 0.5rem; color: #667eea;">🎯 서비스 현황</h5>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #28a745;">
+                        <h5 style="margin-bottom: 0.5rem; color: #28a745;">🎯 서비스 현황</h5>
                         <p style="font-size: 0.8rem; margin: 0;">
                             ✅ 실시간 멘토 매칭 서비스 운영중<br>
                             ✅ 분야별 전문가 데이터베이스 구축완료<br>
@@ -675,7 +686,7 @@
             <div class="footer-bottom">
                 <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License. 
                    <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank" style="color: #ffd700;">GitHub에서 보기</a>
-                   | <strong style="color: #667eea;">실제 서비스 운영중 🚀</strong>
+                   | <strong style="color: #28a745;">💚 100% 무료 서비스 🚀</strong>
                    | <span id="visitorCount">오늘 방문자: 1,247명</span>
                 </p>
             </div>
@@ -702,25 +713,37 @@
     
     <!-- 업종별 필터링 JavaScript -->
     <script>
-        // 업종별 필터링 함수
+        // 업종별 필터링 함수 (개선된 버전)
         function filterByCategory(tab, category, button) {
+            console.log(`Filtering ${tab} by ${category}`); // 디버깅용
+            
             const tabContent = document.getElementById(tab);
+            if (!tabContent) {
+                console.error(`Tab content not found: ${tab}`);
+                return;
+            }
+            
             const items = tabContent.querySelectorAll('.knowledge-item');
             const subTabButtons = tabContent.querySelectorAll('.sub-tab-btn');
             
             // 모든 하위 탭 버튼에서 active 클래스 제거
             subTabButtons.forEach(btn => btn.classList.remove('active'));
             // 클릭된 버튼에 active 클래스 추가
-            button.classList.add('active');
+            if (button) {
+                button.classList.add('active');
+            }
             
-            // 모든 아이템 숨기기
+            // 필터링 로직
             items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                
                 if (category === 'all') {
+                    // 전체 선택 시 모든 아이템 표시
                     item.style.display = 'block';
                     item.classList.remove('hidden');
                 } else {
-                    const itemCategory = item.getAttribute('data-category');
-                    if (itemCategory === category || itemCategory === 'all') {
+                    // 특정 카테고리 선택 시
+                    if (itemCategory === category) {
                         item.style.display = 'block';
                         item.classList.remove('hidden');
                     } else {
@@ -729,10 +752,14 @@
                     }
                 }
             });
+            
+            console.log(`Filtered ${items.length} items for category: ${category}`); // 디버깅용
         }
 
-        // 탭 전환 시 하위 탭 초기화
+        // 탭 전환 시 하위 탭 초기화 (개선된 버전)
         function switchTab(tabName, button) {
+            console.log(`Switching to tab: ${tabName}`); // 디버깅용
+            
             // 기존 탭 기능
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -740,26 +767,41 @@
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
             
-            button.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
+            if (button) {
+                button.classList.add('active');
+            }
+            
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
             
             // 하위 탭을 '전체'로 초기화
             setTimeout(() => {
                 const firstSubTab = document.querySelector(`#${tabName} .sub-tab-btn[data-category="all"]`);
                 if (firstSubTab) {
+                    console.log(`Initializing subtab for ${tabName}`); // 디버깅용
                     filterByCategory(tabName, 'all', firstSubTab);
                 }
             }, 100);
         }
 
-        // 페이지 로드 시 초기화
+        // 페이지 로드 시 초기화 (개선된 버전)
         document.addEventListener('DOMContentLoaded', function() {
-            // 초기 탭 설정
-            const defaultSubTab = document.querySelector('#cases .sub-tab-btn[data-category="all"]');
-            if (defaultSubTab) {
-                filterByCategory('cases', 'all', defaultSubTab);
-            }
+            console.log('DOM Content Loaded - Initializing tabs'); // 디버깅용
             
+            // 초기 탭 설정 (프로젝트 사례 탭)
+            setTimeout(() => {
+                const defaultSubTab = document.querySelector('#cases .sub-tab-btn[data-category="all"]');
+                if (defaultSubTab) {
+                    console.log('Setting default subtab'); // 디버깅용
+                    filterByCategory('cases', 'all', defaultSubTab);
+                } else {
+                    console.error('Default subtab not found'); // 디버깅용
+                }
+            }, 500);
+            
+            // 다른 초기화 함수들
             if (typeof initializeEnhancedFeatures === 'function') {
                 initializeEnhancedFeatures();
             }
@@ -770,6 +812,12 @@
                 startLiveUpdates();
             }
         });
+
+        // 지식 세부 정보 모달 열기
+        function openKnowledgeDetail(id) {
+            console.log(`Opening knowledge detail: ${id}`);
+            alert(`${id} 상세 정보 페이지로 이동합니다.\n\n실제 구현에서는 해당 지식의 상세 내용을 모달 또는 새 페이지에서 보여줍니다.`);
+        }
     </script>
 </body>
 </html>
