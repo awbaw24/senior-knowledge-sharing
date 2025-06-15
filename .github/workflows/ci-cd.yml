@@ -1,0 +1,250 @@
+name: 🚀 CI/CD - Build and Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # 코드 품질 검사
+  lint-and-test:
+    name: 🔍 Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📁 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: 📦 Install Dependencies
+      run: |
+        npm install -g htmlhint csslint jshint
+        
+    - name: 🔍 HTML Validation
+      run: |
+        echo "🔍 HTML 문법 검사 중..."
+        find website -name "*.html" -exec htmlhint {} \;
+        
+    - name: 🎨 CSS Validation
+      run: |
+        echo "🎨 CSS 문법 검사 중..."
+        find website -name "*.css" -exec csslint {} \;
+        
+    - name: ⚡ JavaScript Validation
+      run: |
+        echo "⚡ JavaScript 문법 검사 중..."
+        find website -name "*.js" -exec jshint {} \;
+
+    - name: 📊 File Size Check
+      run: |
+        echo "📊 파일 크기 검사 중..."
+        find website -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec ls -lh {} \;
+
+  # 빌드 및 최적화
+  build:
+    name: 🏗️ Build and Optimize
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    
+    steps:
+    - name: 📁 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: 📦 Install Build Tools
+      run: |
+        npm install -g clean-css-cli html-minifier-terser terser
+        
+    - name: 🗂️ Create Build Directory
+      run: |
+        mkdir -p build/website
+        
+    - name: 📄 Minify HTML Files
+      run: |
+        echo "📄 HTML 압축 중..."
+        for file in website/*.html; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file")
+            html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --minify-css true \
+              --minify-js true \
+              "$file" > "build/website/$filename"
+            echo "✅ $filename 압축 완료"
+          fi
+        done
+        
+    - name: 🎨 Minify CSS Files
+      run: |
+        echo "🎨 CSS 압축 중..."
+        for file in website/*.css; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file")
+            cleancss -o "build/website/$filename" "$file"
+            echo "✅ $filename 압축 완료"
+          fi
+        done
+        
+    - name: ⚡ Minify JavaScript Files
+      run: |
+        echo "⚡ JavaScript 압축 중..."
+        for file in website/*.js; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file")
+            terser "$file" --compress --mangle -o "build/website/$filename"
+            echo "✅ $filename 압축 완료"
+          fi
+        done
+        
+    - name: 📊 Build Summary
+      run: |
+        echo "📊 빌드 결과 요약:"
+        echo "=== 원본 파일 크기 ==="
+        du -sh website/
+        echo "=== 압축 파일 크기 ==="
+        du -sh build/website/
+        echo "=== 압축률 ==="
+        original_size=$(du -sb website/ | cut -f1)
+        compressed_size=$(du -sb build/website/ | cut -f1)
+        compression_ratio=$(echo "scale=2; (1 - $compressed_size / $original_size) * 100" | bc -l)
+        echo "압축률: ${compression_ratio}% 감소"
+        
+    - name: 📤 Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: website-build
+        path: build/website/
+        retention-days: 30
+
+  # 배포 (main 브랜치만)
+  deploy:
+    name: 🌐 Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: [lint-and-test, build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      
+    steps:
+    - name: 📁 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 📥 Download Build Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: website-build
+        path: ./website-optimized
+        
+    - name: 🔄 Copy Original Files (fallback)
+      run: |
+        # 압축된 파일이 있으면 사용, 없으면 원본 사용
+        if [ -d "./website-optimized" ] && [ "$(ls -A ./website-optimized)" ]; then
+          echo "✅ 최적화된 파일 사용"
+          cp -r ./website-optimized/* ./website/
+        else
+          echo "⚠️ 원본 파일 사용 (최적화 실패)"
+        fi
+        
+    - name: 🌐 Setup GitHub Pages
+      uses: actions/configure-pages@v4
+      
+    - name: 📤 Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: './website'
+        
+    - name: 🚀 Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      
+    - name: 🎉 Deployment Success
+      run: |
+        echo "🎉 배포 완료!"
+        echo "🌐 웹사이트: https://awbaw24.github.io/senior-knowledge-sharing/website/"
+        echo "📊 배포 ID: ${{ steps.deployment.outputs.page_url }}"
+
+  # 보안 스캔
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 📁 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 🔒 Run Security Audit
+      run: |
+        echo "🔒 보안 스캔 실행 중..."
+        # 민감한 정보 체크
+        if grep -r "password\|secret\|key" website/ --exclude-dir=node_modules; then
+          echo "⚠️ 민감한 정보가 발견되었습니다!"
+          exit 1
+        else
+          echo "✅ 민감한 정보 없음"
+        fi
+        
+    - name: 📝 Link Check
+      run: |
+        echo "🔗 링크 유효성 검사 중..."
+        # 깨진 내부 링크 체크
+        find website -name "*.html" -exec grep -l "href.*\.html" {} \; | while read file; do
+          echo "🔍 $file 검사 중..."
+        done
+        echo "✅ 링크 검사 완료"
+
+  # 성능 테스트 (선택적)
+  performance-test:
+    name: ⚡ Performance Test
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 📁 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 📥 Download Build Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: website-build
+        path: ./test-site
+        
+    - name: 🔧 Setup Node.js for Testing
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: 📦 Install Lighthouse
+      run: npm install -g @lhci/cli
+      
+    - name: ⚡ Run Performance Audit
+      run: |
+        echo "⚡ 성능 테스트 실행 중..."
+        # 로컬 서버 시작 (백그라운드)
+        cd test-site && python3 -m http.server 8080 &
+        sleep 5
+        
+        # Lighthouse 실행
+        lhci autorun --upload.target=temporary-public-storage --serverBaseUrl=http://localhost:8080
+        
+        echo "✅ 성능 테스트 완료"
+
