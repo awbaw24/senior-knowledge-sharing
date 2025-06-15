@@ -50,6 +50,33 @@
         <div class="hero-content">
             <h1>🌟 평생의 지혜를 다음 세대에게</h1>
             <p class="hero-subtitle">은퇴 전문가들의 귀중한 경험과 노하우를 체계적으로 보존하고,<br>후배들과의 멘토링을 통해 지속가능한 지식 전수 문화를 만들어갑니다.</p>
+            
+            <!-- 이메일 인증 알림 배너 (조건부 표시) -->
+            <div id="emailVerificationBanner" style="
+                background: linear-gradient(135deg, #f39c12, #e67e22);
+                color: white;
+                padding: 1rem;
+                border-radius: 10px;
+                margin-bottom: 2rem;
+                text-align: center;
+                display: none;
+                animation: bounce 2s ease-in-out infinite;
+            ">
+                <i class="fas fa-envelope"></i>
+                <strong>이메일 인증을 완료해주세요!</strong>
+                <p style="margin: 0.5rem 0;">모든 서비스를 이용하려면 이메일 인증이 필요합니다.</p>
+                <button onclick="openModal('email-verification')" style="
+                    background: white;
+                    color: #e67e22;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-top: 0.5rem;
+                ">지금 인증하기</button>
+            </div>
+
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-number">150+</span>
@@ -136,7 +163,7 @@
                         </div>
                     </article>
                     <article class="knowledge-item" onclick="openKnowledgeDetail('architecture')">
-                        <div class="knowledge-badge">🏗️ 건축</div>
+                        <div class="knowledge-badge">🏗️건축</div>
                         <h3>인허가 절차 완전 정복</h3>
                         <p>신규 건축사를 위한 실무 A-Z 가이드</p>
                         <div class="knowledge-meta">
@@ -249,6 +276,15 @@
                 <div class="footer-section">
                     <h3>🏛️ 은퇴자 지식 공유</h3>
                     <p>평생에 걸쳐 쌓아온 소중한 경험과 지혜를 다음 세대에게 전하는 플랫폼</p>
+                    
+                    <!-- 이메일 확인 기능 추가 -->
+                    <div class="email-verification-section" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: #667eea;">📧 이메일 관리</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #666;">등록된 이메일 인증 상태를 확인하고 관리하세요.</p>
+                        <button onclick="openRegisteredEmailsModal()" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-envelope-check"></i> 등록된 이메일 확인
+                        </button>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>빠른 링크</h4>
@@ -258,6 +294,17 @@
                         <li><a href="#community">커뮤니티</a></li>
                         <li><a href="rural.html">농어촌 활성화</a></li>
                     </ul>
+                    
+                    <!-- 테스트 기능 추가 -->
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+                        <h5 style="color: #667eea;">🧪 테스트 기능</h5>
+                        <button onclick="simulateEmailVerification('test@example.com')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem;">
+                            이메일 인증 테스트
+                        </button>
+                        <button onclick="clearAllUsers()" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem;">
+                            데이터 초기화
+                        </button>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>연락처</h4>
@@ -267,11 +314,23 @@
                         <a href="#" onclick="alert('GitHub: https://github.com/awbaw24/senior-knowledge-sharing')"><i class="fab fa-github"></i></a>
                         <a href="#" onclick="alert('이메일: comensee24@gmail.com')"><i class="fas fa-envelope"></i></a>
                     </div>
+                    
+                    <!-- 이메일 인증 도움말 -->
+                    <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #667eea;">
+                        <h5 style="margin-bottom: 0.5rem; color: #667eea;">💡 이메일 인증 안내</h5>
+                        <p style="font-size: 0.8rem; margin: 0;">
+                            회원가입 후 이메일 인증이 필요합니다.<br>
+                            • 인증 이메일이 안 와요? → 스팸함 확인<br>
+                            • 인증 링크가 안 눌러져요? → 재발송 요청<br>
+                            • 데모 환경에서는 "이메일 인증 완료" 버튼으로 테스트 가능
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License. 
                    <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank" style="color: #ffd700;">GitHub에서 보기</a>
+                   | <strong style="color: #667eea;">이메일 인증 기능 구현 완료 ✅</strong>
                 </p>
             </div>
         </div>
@@ -286,5 +345,43 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <!-- 이메일 인증 상태 확인 스크립트 -->
+    <script>
+        // 페이지 로드 시 이메일 인증 상태 확인
+        document.addEventListener('DOMContentLoaded', function() {
+            checkEmailVerificationStatus();
+        });
+
+        function checkEmailVerificationStatus() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const pendingEmail = localStorage.getItem('pendingVerificationEmail');
+            
+            // 인증 대기 중인 이메일이 있는 경우 배너 표시
+            if (pendingEmail) {
+                const banner = document.getElementById('emailVerificationBanner');
+                if (banner) {
+                    banner.style.display = 'block';
+                }
+            }
+        }
+
+        // Bounce 애니메이션 CSS 추가
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                60% {
+                    transform: translateY(-5px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
