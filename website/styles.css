@@ -61,6 +61,7 @@ body {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 0.5rem;
 }
 
 .nav-menu a:hover {
@@ -78,6 +79,7 @@ body {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .btn-login {
@@ -94,11 +96,55 @@ body {
 .btn-login:hover {
     background: white;
     color: #667eea;
+    transform: translateY(-2px);
 }
 
 .btn-signup:hover {
     background: #ffed4e;
     transform: translateY(-2px);
+}
+
+/* 모바일 메뉴 */
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.mobile-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-menu a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.btn-mobile {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #ffd700;
+    color: #333;
+    font-weight: bold;
 }
 
 /* 히어로 섹션 */
@@ -131,10 +177,12 @@ body {
     gap: 3rem;
     margin-bottom: 3rem;
     animation: fadeInUp 1s ease 0.4s both;
+    flex-wrap: wrap;
 }
 
 .stat-item {
     text-align: center;
+    min-width: 120px;
 }
 
 .stat-number {
@@ -154,6 +202,7 @@ body {
     justify-content: center;
     gap: 1.5rem;
     animation: fadeInUp 1s ease 0.6s both;
+    flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
@@ -164,6 +213,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -262,6 +312,7 @@ body {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
 .tab-btn {
@@ -277,6 +328,12 @@ body {
 .tab-btn.active {
     background: #667eea;
     color: white;
+}
+
+.tab-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .tab-content {
@@ -299,6 +356,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .knowledge-item:hover {
@@ -328,6 +386,7 @@ body {
 
 .knowledge-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     font-size: 0.9rem;
     color: #999;
@@ -358,6 +417,12 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .story-quote {
@@ -407,6 +472,7 @@ body {
     border-radius: 15px;
     text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .community-card:hover {
@@ -465,6 +531,29 @@ body {
     color: #ffd700;
 }
 
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #555;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #ffd700;
+    color: #333;
+    transform: translateY(-3px);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
@@ -487,11 +576,13 @@ body {
 
 .modal-content {
     background-color: white;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 2rem;
     border-radius: 15px;
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
     position: relative;
     animation: slideIn 0.3s;
 }
@@ -509,6 +600,109 @@ body {
 
 .close:hover {
     color: #333;
+}
+
+/* 폼 스타일 */
+.signup-form, .contact-form, .login-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* 멘토 그리드 */
+.mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.mentor-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mentor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.mentor-avatar i {
+    font-size: 4rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.mentor-title {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.mentor-experience {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.mentor-specialties {
+    margin-bottom: 1rem;
+}
+
+.specialty {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin: 0.2rem;
+}
+
+.btn-contact {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-contact:hover {
+    background: #218838;
+    transform: translateY(-2px);
 }
 
 /* 애니메이션 */
@@ -541,12 +735,21 @@ body {
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    .nav-menu {
+    .nav-menu, .nav-auth {
         display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
     }
     
     .hero-content h1 {
         font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        padding: 0 1rem;
     }
     
     .hero-stats {
@@ -557,6 +760,12 @@ body {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 80%;
+        max-width: 300px;
     }
     
     .category-grid {
@@ -571,13 +780,29 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .community-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .knowledge-tabs {
         flex-direction: column;
         align-items: center;
     }
     
-    .community-grid {
-        grid-template-columns: 1fr;
+    .tab-btn {
+        width: 80%;
+        max-width: 300px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+        margin: 10% auto;
+    }
+    
+    .knowledge-meta {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }
 
@@ -586,8 +811,20 @@ body {
         font-size: 2rem;
     }
     
+    .categories h2, .knowledge-base h2, .success-stories h2, .community h2 {
+        font-size: 2rem;
+    }
+    
+    .story-quote {
+        font-size: 1rem;
+    }
+    
     .modal-content {
-        margin: 20% auto;
-        width: 95%;
+        width: 98%;
+        margin: 15% auto;
+    }
+    
+    .mentor-grid {
+        grid-template-columns: 1fr;
     }
 }
