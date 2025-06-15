@@ -6,6 +6,44 @@
     <title>🏛️ 은퇴자 지식 공유 플랫폼</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .sub-tabs {
+            margin: 1.5rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e1e5e9;
+            padding-bottom: 1rem;
+        }
+        
+        .sub-tab-btn {
+            background: none;
+            border: 1px solid #e1e5e9;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .sub-tab-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .sub-tab-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .knowledge-item {
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .knowledge-item.hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <!-- 네비게이션 -->
@@ -177,8 +215,16 @@
             </div>
             
             <div id="cases" class="tab-content active">
+                <!-- 업종별 하위 탭 -->
+                <div class="sub-tabs">
+                    <button class="sub-tab-btn active" data-category="all" onclick="filterByCategory('cases', 'all', this)">전체</button>
+                    <button class="sub-tab-btn" data-category="construction" onclick="filterByCategory('cases', 'construction', this)">🏗️ 건축토목</button>
+                    <button class="sub-tab-btn" data-category="manufacturing" onclick="filterByCategory('cases', 'manufacturing', this)">🏭 제조업</button>
+                    <button class="sub-tab-btn" data-category="agriculture" onclick="filterByCategory('cases', 'agriculture', this)">🌾 농어업</button>
+                    <button class="sub-tab-btn" data-category="service" onclick="filterByCategory('cases', 'service', this)">🏢 서비스업</button>
+                </div>
                 <div class="knowledge-grid">
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('precision')">
+                    <article class="knowledge-item manufacturing" data-category="manufacturing" onclick="openKnowledgeDetail('precision')">
                         <div class="knowledge-badge">🏭 제조업</div>
                         <h3>정밀가공 불량률 50% 감소 사례</h3>
                         <p>김기계 마이스터의 40년 노하우로 달성한 혁신적 품질 개선</p>
@@ -195,7 +241,7 @@
                         </div>
                     </article>
                     
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('farming')">
+                    <article class="knowledge-item agriculture" data-category="agriculture" onclick="openKnowledgeDetail('farming')">
                         <div class="knowledge-badge">🌾 농어업</div>
                         <h3>귀농 첫해 300% 수확 성공기</h3>
                         <p>송농부의 스마트팜 기술로 달성한 놀라운 귀농 성과</p>
@@ -212,7 +258,7 @@
                         </div>
                     </article>
                     
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('architecture')">
+                    <article class="knowledge-item construction" data-category="construction" onclick="openKnowledgeDetail('architecture')">
                         <div class="knowledge-badge">🏗️ 건축토목</div>
                         <h3>인허가 절차 완전 정복 가이드</h3>
                         <p>이건축 건축사의 35년 경험이 담긴 실무 완전 가이드</p>
@@ -229,7 +275,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('restaurant')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('restaurant')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>카페 창업 6개월 만에 흑자 달성기</h3>
                         <p>박카페 대표의 25년 외식업 노하우로 성공한 카페 창업 스토리</p>
@@ -246,7 +292,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('logistics')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('logistics')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>물류센터 효율 200% 향상 프로젝트</h3>
                         <p>최물류 전문가의 30년 물류 노하우로 이룬 혁신적 개선 사례</p>
@@ -263,7 +309,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('retail')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('retail')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>소상공인 매출 300% 증대 성공기</h3>
                         <p>김소상 대표의 디지털 마케팅 전환으로 이룬 극적인 매출 성장</p>
@@ -283,8 +329,16 @@
             </div>
             
             <div id="guides" class="tab-content">
+                <!-- 업종별 하위 탭 -->
+                <div class="sub-tabs">
+                    <button class="sub-tab-btn active" data-category="all" onclick="filterByCategory('guides', 'all', this)">전체</button>
+                    <button class="sub-tab-btn" data-category="construction" onclick="filterByCategory('guides', 'construction', this)">🏗️ 건축토목</button>
+                    <button class="sub-tab-btn" data-category="manufacturing" onclick="filterByCategory('guides', 'manufacturing', this)">🏭 제조업</button>
+                    <button class="sub-tab-btn" data-category="agriculture" onclick="filterByCategory('guides', 'agriculture', this)">🌾 농어업</button>
+                    <button class="sub-tab-btn" data-category="service" onclick="filterByCategory('guides', 'service', this)">🏢 서비스업</button>
+                </div>
                 <div class="knowledge-grid">
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('cnc-guide')">
+                    <article class="knowledge-item manufacturing" data-category="manufacturing" onclick="openKnowledgeDetail('cnc-guide')">
                         <div class="knowledge-badge">🏭 제조업</div>
                         <h3>CNC 가공 기초부터 고급까지</h3>
                         <p>현장에서 바로 쓸 수 있는 CNC 가공 완전 마스터 가이드</p>
@@ -295,7 +349,7 @@
                         </div>
                     </article>
                     
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('smart-farm-guide')">
+                    <article class="knowledge-item agriculture" data-category="agriculture" onclick="openKnowledgeDetail('smart-farm-guide')">
                         <div class="knowledge-badge">🌾 농어업</div>
                         <h3>스마트팜 구축 및 운영 가이드</h3>
                         <p>초보자도 쉽게 따라할 수 있는 스마트팜 완전 구축 가이드</p>
@@ -306,7 +360,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('construction-guide')">
+                    <article class="knowledge-item construction" data-category="construction" onclick="openKnowledgeDetail('construction-guide')">
                         <div class="knowledge-badge">🏗️ 건축토목</div>
                         <h3>건축 현장 안전관리 완전 가이드</h3>
                         <p>사고 제로를 위한 건축 현장 안전관리 체크리스트와 실무 노하우</p>
@@ -317,7 +371,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('cafe-startup-guide')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('cafe-startup-guide')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>카페 창업 성공 가이드</h3>
                         <p>입지 선정부터 메뉴 개발, 운영까지 카페 창업 완전 가이드</p>
@@ -328,7 +382,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('customer-service-guide')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('customer-service-guide')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>고객 서비스 마스터 가이드</h3>
                         <p>20년 호텔리어가 전하는 완벽한 고객 서비스 노하우</p>
@@ -339,7 +393,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('digital-marketing-guide')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('digital-marketing-guide')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>소상공인 디지털 마케팅 가이드</h3>
                         <p>SNS, 블로그, 온라인 쇼핑몰 활용한 매출 증대 전략</p>
@@ -353,8 +407,16 @@
             </div>
             
             <div id="tips" class="tab-content">
+                <!-- 업종별 하위 탭 -->
+                <div class="sub-tabs">
+                    <button class="sub-tab-btn active" data-category="all" onclick="filterByCategory('tips', 'all', this)">전체</button>
+                    <button class="sub-tab-btn" data-category="construction" onclick="filterByCategory('tips', 'construction', this)">🏗️ 건축토목</button>
+                    <button class="sub-tab-btn" data-category="manufacturing" onclick="filterByCategory('tips', 'manufacturing', this)">🏭 제조업</button>
+                    <button class="sub-tab-btn" data-category="agriculture" onclick="filterByCategory('tips', 'agriculture', this)">🌾 농어업</button>
+                    <button class="sub-tab-btn" data-category="service" onclick="filterByCategory('tips', 'service', this)">🏢 서비스업</button>
+                </div>
                 <div class="knowledge-grid">
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('field-tips')">
+                    <article class="knowledge-item all" data-category="all" onclick="openKnowledgeDetail('field-tips')">
                         <div class="knowledge-badge">💡 공통</div>
                         <h3>현장에서만 배울 수 있는 10가지 비법</h3>
                         <p>책에서는 절대 알 수 없는 실무 핵심 노하우 모음집</p>
@@ -365,7 +427,40 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('service-tips')">
+                    <article class="knowledge-item manufacturing" data-category="manufacturing" onclick="openKnowledgeDetail('manufacturing-tips')">
+                        <div class="knowledge-badge">🏭 제조업</div>
+                        <h3>제조업 생산성 향상 7가지 핵심 전략</h3>
+                        <p>40년 제조업 베테랑들이 공개하는 생산성 혁신의 비밀</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 제조업 전문가들</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.16</span>
+                            <span><i class="fas fa-heart"></i> 167명이 좋아함</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item construction" data-category="construction" onclick="openKnowledgeDetail('construction-tips')">
+                        <div class="knowledge-badge">🏗️ 건축토목</div>
+                        <h3>건축 현장 효율성 극대화 5가지 노하우</h3>
+                        <p>공기 단축과 품질 향상을 동시에 달성하는 현장 관리 비법</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 건축 전문가들</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.15</span>
+                            <span><i class="fas fa-heart"></i> 198명이 좋아함</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item agriculture" data-category="agriculture" onclick="openKnowledgeDetail('agriculture-tips')">
+                        <div class="knowledge-badge">🌾 농어업</div>
+                        <h3>농업 수익성 극대화 6가지 황금 법칙</h3>
+                        <p>경험 많은 농업인들이 터득한 수익 창출의 핵심 포인트</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 농업 전문가들</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.14</span>
+                            <span><i class="fas fa-heart"></i> 212명이 좋아함</span>
+                        </div>
+                    </article>
+
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('service-tips')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>서비스업 매출 증대 5가지 황금 법칙</h3>
                         <p>고객 만족도와 매출을 동시에 올리는 검증된 서비스업 노하우</p>
@@ -376,7 +471,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('hospitality-tips')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('hospitality-tips')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>호스피탈리티 마스터 비법 7가지</h3>
                         <p>고객의 마음을 사로잡는 진정한 서비스의 비밀</p>
@@ -387,7 +482,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('franchise-tips')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('franchise-tips')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>프랜차이즈 성공 운영 노하우</h3>
                         <p>본부와의 상생, 매장 관리, 직원 교육의 핵심 포인트</p>
@@ -401,8 +496,16 @@
             </div>
             
             <div id="videos" class="tab-content">
+                <!-- 업종별 하위 탭 -->
+                <div class="sub-tabs">
+                    <button class="sub-tab-btn active" data-category="all" onclick="filterByCategory('videos', 'all', this)">전체</button>
+                    <button class="sub-tab-btn" data-category="construction" onclick="filterByCategory('videos', 'construction', this)">🏗️ 건축토목</button>
+                    <button class="sub-tab-btn" data-category="manufacturing" onclick="filterByCategory('videos', 'manufacturing', this)">🏭 제조업</button>
+                    <button class="sub-tab-btn" data-category="agriculture" onclick="filterByCategory('videos', 'agriculture', this)">🌾 농어업</button>
+                    <button class="sub-tab-btn" data-category="service" onclick="filterByCategory('videos', 'service', this)">🏢 서비스업</button>
+                </div>
                 <div class="knowledge-grid">
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-welding')">
+                    <article class="knowledge-item manufacturing" data-category="manufacturing" onclick="openKnowledgeDetail('video-welding')">
                         <div class="knowledge-badge">🏭 제조업</div>
                         <h3>특수용접 기법 실전 강의</h3>
                         <p>최용접 전문가의 32년 노하우가 담긴 실제 작업 영상</p>
@@ -413,7 +516,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-cafe')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('video-cafe')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>카페 바리스타 마스터 클래스</h3>
                         <p>박카페 대표의 완벽한 커피 추출과 라떼아트 실전 강의</p>
@@ -424,7 +527,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-customer-service')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('video-customer-service')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>고객 응대 스킬 마스터 강의</h3>
                         <p>호텔 업계 20년 베테랑이 전하는 완벽한 고객 서비스 기법</p>
@@ -435,7 +538,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-digital-marketing')">
+                    <article class="knowledge-item service" data-category="service" onclick="openKnowledgeDetail('video-digital-marketing')">
                         <div class="knowledge-badge">🏢 서비스업</div>
                         <h3>소상공인 SNS 마케팅 실전 강의</h3>
                         <p>인스타그램, 네이버 블로그로 매출 300% 올린 실제 방법</p>
@@ -446,7 +549,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-farming')">
+                    <article class="knowledge-item agriculture" data-category="agriculture" onclick="openKnowledgeDetail('video-farming')">
                         <div class="knowledge-badge">🌾 농어업</div>
                         <h3>스마트팜 설치부터 운영까지</h3>
                         <p>귀농 성공 농부의 스마트팜 A-Z 완전 정복 영상</p>
@@ -457,7 +560,7 @@
                         </div>
                     </article>
 
-                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-construction')">
+                    <article class="knowledge-item construction" data-category="construction" onclick="openKnowledgeDetail('video-construction')">
                         <div class="knowledge-badge">🏗️ 건축토목</div>
                         <h3>건축 현장 안전관리 실무 강의</h3>
                         <p>35년 건축사가 전하는 현장 안전관리의 모든 것</p>
@@ -593,12 +696,75 @@
     <script src="script.js"></script>
     <script src="enhanced-features.js"></script>
     
-    <!-- 실시간 기능 초기화 -->
+    <!-- 업종별 필터링 JavaScript -->
     <script>
+        // 업종별 필터링 함수
+        function filterByCategory(tab, category, button) {
+            const tabContent = document.getElementById(tab);
+            const items = tabContent.querySelectorAll('.knowledge-item');
+            const subTabButtons = tabContent.querySelectorAll('.sub-tab-btn');
+            
+            // 모든 하위 탭 버튼에서 active 클래스 제거
+            subTabButtons.forEach(btn => btn.classList.remove('active'));
+            // 클릭된 버튼에 active 클래스 추가
+            button.classList.add('active');
+            
+            // 모든 아이템 숨기기
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                    item.classList.remove('hidden');
+                } else {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (itemCategory === category || itemCategory === 'all') {
+                        item.style.display = 'block';
+                        item.classList.remove('hidden');
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // 탭 전환 시 하위 탭 초기화
+        function switchTab(tabName, button) {
+            // 기존 탭 기능
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            // 하위 탭을 '전체'로 초기화
+            setTimeout(() => {
+                const firstSubTab = document.querySelector(`#${tabName} .sub-tab-btn[data-category="all"]`);
+                if (firstSubTab) {
+                    filterByCategory(tabName, 'all', firstSubTab);
+                }
+            }, 100);
+        }
+
+        // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
-            initializeEnhancedFeatures();
-            loadRealTimeData();
-            startLiveUpdates();
+            // 초기 탭 설정
+            const defaultSubTab = document.querySelector('#cases .sub-tab-btn[data-category="all"]');
+            if (defaultSubTab) {
+                filterByCategory('cases', 'all', defaultSubTab);
+            }
+            
+            if (typeof initializeEnhancedFeatures === 'function') {
+                initializeEnhancedFeatures();
+            }
+            if (typeof loadRealTimeData === 'function') {
+                loadRealTimeData();
+            }
+            if (typeof startLiveUpdates === 'function') {
+                startLiveUpdates();
+            }
         });
     </script>
 </body>
