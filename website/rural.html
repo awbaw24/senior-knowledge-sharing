@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌾 농어촌 활성화 프로젝트 - 은퇴자 지식 공유</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .rural-hero {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .status-active {
+            background: #e8f5e8;
+            color: #27ae60;
+        }
+        
+        .status-planning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .metric-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #27ae60;
+            display: block;
+        }
+        
+        .region-map {
+            background: #e8f5e8;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .region-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .region-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .region-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            width: 60px;
+            text-align: center;
+        }
+        
+        .success-story {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>농어촌 활성화</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="#projects">프로젝트</a></li>
+                <li><a href="#regions">지역현황</a></li>
+                <li><a href="#success">성공사례</a></li>
+                <li><a href="#join">참여하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="rural-hero">
+        <div class="container">
+            <h1>🌾 농어촌 활성화 프로젝트</h1>
+            <p class="hero-subtitle">은퇴 전문가들의 지혜로 농어촌에 새로운 활력을 불어넣습니다</p>
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <span class="metric-number">15</span>
+                    <div>진행 중 프로젝트</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">89</span>
+                    <div>참여 멘토</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">234</span>
+                    <div>수혜 농가</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">45%</span>
+                    <div>소득 증가율</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 진행 중 프로젝트 -->
+    <section id="projects" class="container" style="padding: 80px 20px;">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #333;">🚀 진행 중인 프로젝트</h2>
+        
+        <div class="project-card">
+            <div class="project-status status-active">진행 중</div>
+            <h3>🍓 안동 딸기농장 스마트팜 전환</h3>
+            <p><strong>멘토:</strong> 김농업 (30년 경력, 전 농업기술센터 소장)</p>
+            <p><strong>지역:</strong> 경상북도 안동시</p>
+            <p><strong>목표:</strong> 전통 딸기농장을 스마트팜으로 전환하여 생산성 300% 향상</p>
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <span class="metric-number">8</span>
+                    <div>참여 농가</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">₩2.3억</span>
+                    <div>예상 매출 증가</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">12개월</span>
+                    <div>프로젝트 기간</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-status status-active">진행 중</div>
+            <h3>🦐 울진 대게 직거래 플랫폼</h3>
+            <p><strong>멘토:</strong> 박어업 (25년 경력, 전 수산업협동조합 이사장)</p>
+            <p><strong>지역:</strong> 경상북도 울진군</p>
+            <p><strong>목표:</strong> 중간 유통업체 없이 소비자 직거래로 어민 소득 증대</p>
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <span class="metric-number">23</span>
+                    <div>참여 어가</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">₩4.7억</span>
+                    <div>연간 매출 목표</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">6개월</span>
+                    <div>프로젝트 기간</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-status status-planning">계획 중</div>
+            <h3>🌿 영주 한방약초 체험관광</h3>
+            <p><strong>멘토:</strong> 정한의 (40년 경력, 전 한의원 원장)</p>
+            <p><strong>지역:</strong> 경상북도 영주시</p>
+            <p><strong>목표:</strong> 한방약초 재배와 체험관광을 결합한 6차 산업 모델 구축</p>
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <span class="metric-number">15</span>
+                    <div>계획 농가</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">₩1.8억</span>
+                    <div>투자 계획</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">18개월</span>
+                    <div>준비 기간</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 지역별 현황 -->
+    <section id="regions" class="container" style="padding: 80px 20px; background: #f8f9fa;">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #333;">🗺️ 지역별 현황</h2>
+        
+        <div class="region-map">
+            <div class="region-item">
+                <div class="region-icon">🏔️</div>
+                <div style="flex: 1;">
+                    <h4>경상북도 (안동, 영주, 봉화)</h4>
+                    <p>전통 농업 + 스마트 기술 융합</p>
+                    <small>멘토 12명 • 프로젝트 5개 • 참여농가 67곳</small>
+                </div>
+            </div>
+            
+            <div class="region-item">
+                <div class="region-icon">🏭</div>
+                <div style="flex: 1;">
+                    <h4>울산광역시 (울주군 농촌지역)</h4>
+                    <p>제조업 은퇴자 → 농업 멘토링</p>
+                    <small>멘토 18명 • 프로젝트 8개 • 참여농가 45곳</small>
+                </div>
+            </div>
+            
+            <div class="region-item">
+                <div class="region-icon">🌊</div>
+                <div style="flex: 1;">
+                    <h4>부산 기장군 (어촌지역)</h4>
+                    <p>수산업 현대화 및 관광 연계</p>
+                    <small>멘토 9명 • 프로젝트 3개 • 참여어가 28곳</small>
+                </div>
+            </div>
+            
+            <div class="region-item">
+                <div class="region-icon">🏞️</div>
+                <div style="flex: 1;">
+                    <h4>강원도 정선군</h4>
+                    <p>폐광지역 농촌관광 재생</p>
+                    <small>멘토 7명 • 프로젝트 2개 • 참여농가 19곳</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 성공 사례 -->
+    <section id="success" class="container" style="padding: 80px 20px;">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #333;">🏆 성공 사례</h2>
+        
+        <div class="success-story">
+            <h3>🌾 봉화 고추농장 혁신 사례</h3>
+            <p><strong>Before:</strong> 전통 고추 재배로 연 매출 2,000만원</p>
+            <p><strong>After:</strong> 스마트팜 + 직거래로 연 매출 6,500만원 (225% 증가)</p>
+            <br>
+            <p><em>"30년 농사 경험을 가진 멘토님께서 스마트팜 기술을 알려주시고, 온라인 판매까지 도와주셨어요. 이제 아들도 농사에 관심을 보이고 있습니다."</em></p>
+            <p><strong>- 이농부 (봉화군 고추농가)</strong></p>
+        </div>
+        
+        <div class="success-story">
+            <h3>🦀 울진 대게 직판장 성공</h3>
+            <p><strong>Before:</strong> 중간업체 납품으로 kg당 15,000원</p>
+            <p><strong>After:</strong> 온라인 직거래로 kg당 28,000원 (87% 증가)</p>
+            <br>
+            <p><em>"어업조합장 출신 멘토님이 유통 구조를 완전히 바꿔주셨습니다. 이제 손자 교육비 걱정 없어요."</em></p>
+            <p><strong>- 박어부 (울진군 대게잡이)</strong></p>
+        </div>
+    </section>
+
+    <!-- 참여하기 -->
+    <section id="join" class="container" style="padding: 80px 20px; background: #f8f9fa;">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #333;">🤝 함께 참여하세요</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="project-card">
+                <h3>🧑‍🏫 농어촌 멘토가 되기</h3>
+                <p>농업, 어업, 유통, 관광 분야의 경험을 농어촌 활성화에 활용해보세요.</p>
+                <button class="btn-primary" style="margin-top: 1rem;" onclick="joinAsMentor()">멘토 신청</button>
+            </div>
+            
+            <div class="project-card">
+                <h3>🌱 프로젝트 제안하기</h3>
+                <p>지역 농어촌 발전을 위한 아이디어나 프로젝트를 제안해주세요.</p>
+                <button class="btn-secondary" style="margin-top: 1rem;" onclick="proposeProject()">프로젝트 제안</button>
+            </div>
+            
+            <div class="project-card">
+                <h3>💰 후원 및 투자</h3>
+                <p>농어촌 활성화 프로젝트에 후원이나 투자로 참여해보세요.</p>
+                <button class="btn-primary" style="margin-top: 1rem;" onclick="supportProject()">후원하기</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌾 농어촌 활성화 프로젝트</h3>
+                    <p>은퇴 전문가들의 지혜로 농어촌에 새로운 활력을 불어넣는 사회공헌 플랫폼</p>
+                </div>
+                <div class="footer-section">
+                    <h4>연락처</h4>
+                    <p><i class="fas fa-envelope"></i> rural@awbaw24.com</p>
+                    <p><i class="fas fa-phone"></i> 054-1234-5678</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 농어촌 활성화 프로젝트. 은퇴자 지식 공유 플랫폼의 일부입니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function joinAsMentor() {
+            alert('농어촌 멘토 신청 페이지로 이동합니다.\n\n특별 혜택:\n• 멘토링 활동비 지원\n• 지역 특산품 할인\n• 농어촌 체험 프로그램 무료 참여');
+        }
+        
+        function proposeProject() {
+            const project = prompt('어떤 농어촌 활성화 프로젝트를 제안하시겠습니까?\n\n예시:\n- 스마트팜 도입\n- 농촌 관광 개발\n- 특산품 브랜딩\n- 직거래 플랫폼');
+            
+            if (project) {
+                alert(`훌륭한 아이디어입니다!\n\n"${project}"\n\n담당자가 검토 후 연락드리겠습니다.`);
+            }
+        }
+        
+        function supportProject() {
+            alert('후원 방법:\n\n💰 직접 후원\n• 프로젝트별 후원\n• 정기 후원\n\n🤝 현물 후원\n• 장비 및 기술 지원\n• 교육 프로그램 제공\n\n📞 문의: rural@awbaw24.com');
+        }
+        
+        // 실시간 업데이트 시뮬레이션
+        function updateMetrics() {
+            const metrics = document.querySelectorAll('.metric-number');
+            metrics.forEach(metric => {
+                const current = parseInt(metric.textContent);
+                if (!metric.textContent.includes('₩') && !metric.textContent.includes('%')) {
+                    const increase = Math.random() < 0.1 ? 1 : 0; // 10% 확률로 증가
+                    if (increase) {
+                        metric.textContent = current + 1;
+                    }
+                }
+            });
+        }
+        
+        // 5분마다 메트릭 업데이트
+        setInterval(updateMetrics, 300000);
+        
+        // 스크롤 애니메이션
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.project-card, .region-item');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // 초기 스타일 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card, .region-item');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+        });
+    </script>
+</body>
+</html>
