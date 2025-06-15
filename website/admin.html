@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 - 은퇴자 지식 공유 플랫폼</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+        }
+        
+        .sidebar h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar li {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .main-content {
+            padding: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th, .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-approve {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-reject {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-view {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-match {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .status-pending {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        
+        .status-approved {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .status-active {
+            color: #17a2b8;
+            font-weight: bold;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        .back-link:hover {
+            background: #5a67d8;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> 메인으로
+    </a>
+    
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>📊 관리자</h2>
+            <ul>
+                <li><a href="#" class="active" data-section="overview"><i class="fas fa-home"></i> 개요</a></li>
+                <li><a href="#" data-section="mentors"><i class="fas fa-user-tie"></i> 멘토 관리</a></li>
+                <li><a href="#" data-section="mentees"><i class="fas fa-user-graduate"></i> 멘티 관리</a></li>
+                <li><a href="#" data-section="matching"><i class="fas fa-handshake"></i> 매칭 관리</a></li>
+                <li><a href="#" data-section="knowledge"><i class="fas fa-book"></i> 지식 관리</a></li>
+                <li><a href="#" data-section="statistics"><i class="fas fa-chart-bar"></i> 통계</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div id="overview" class="section">
+                <h1>📊 플랫폼 현황</h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+                        <span class="stat-number" id="mentorCount">156</span>
+                        <div class="stat-label">등록 멘토</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                        <span class="stat-number" id="menteeCount">423</span>
+                        <div class="stat-label">등록 멘티</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                        <span class="stat-number" id="matchingCount">89</span>
+                        <div class="stat-label">진행 중 매칭</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-book"></i></div>
+                        <span class="stat-number" id="knowledgeCount">234</span>
+                        <div class="stat-label">지식 게시물</div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3>📋 최근 활동</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>시간</th>
+                                <th>활동 유형</th>
+                                <th>사용자</th>
+                                <th>내용</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentActivities">
+                            <tr>
+                                <td>2024-06-15 09:30</td>
+                                <td>멘토 신규 등록</td>
+                                <td>김철수</td>
+                                <td>제조업 분야 멘토 등록</td>
+                            </tr>
+                            <tr>
+                                <td>2024-06-15 09:15</td>
+                                <td>멘토링 매칭 완료</td>
+                                <td>박영희 ↔ 이신입</td>
+                                <td>농업 분야 멘토링</td>
+                            </tr>
+                            <tr>
+                                <td>2024-06-15 08:45</td>
+                                <td>지식 게시물 등록</td>
+                                <td>정건축</td>
+                                <td>"아파트 설계 시 주의사항"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="mentors" class="section" style="display: none;">
+                <h1>🧑‍🏫 멘토 관리</h1>
+                
+                <div class="content-section">
+                    <h3>승인 대기 중인 멘토</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th>분야</th>
+                                <th>경력</th>
+                                <th>신청일</th>
+                                <th>상태</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingMentors">
+                            <!-- 동적 생성 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="content-section">
+                    <h3>활동 중인 멘토</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th>분야</th>
+                                <th>멘티 수</th>
+                                <th>평점</th>
+                                <th>상태</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>김기계</td>
+                                <td>제조업</td>
+                                <td>5명</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td><span class="status-active">활동 중</span></td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>박농부</td>
+                                <td>농업</td>
+                                <td>3명</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td><span class="status-active">활동 중</span></td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="mentees" class="section" style="display: none;">
+                <h1>🎓 멘티 관리</h1>
+                
+                <div class="content-section">
+                    <h3>신규 멘티</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th>관심 분야</th>
+                                <th>상태</th>
+                                <th>등록일</th>
+                                <th>매칭 상태</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newMentees">
+                            <!-- 동적 생성 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="matching" class="section" style="display: none;">
+                <h1>🤝 매칭 관리</h1>
+                
+                <div class="content-section">
+                    <h3>진행 중인 멘토링</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>멘토</th>
+                                <th>멘티</th>
+                                <th>분야</th>
+                                <th>시작일</th>
+                                <th>진행 상태</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeMatchings">
+                            <tr>
+                                <td>김기계</td>
+                                <td>이신입</td>
+                                <td>정밀가공</td>
+                                <td>2024-06-01</td>
+                                <td><span class="status-active">진행 중</span></td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>박농부</td>
+                                <td>최귀농</td>
+                                <td>친환경농법</td>
+                                <td>2024-06-05</td>
+                                <td><span class="status-active">진행 중</span></td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="content-section">
+                    <h3>매칭 요청</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>요청자</th>
+                                <th>분야</th>
+                                <th>요청 내용</th>
+                                <th>요청일</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matchingRequests">
+                            <!-- 동적 생성 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="knowledge" class="section" style="display: none;">
+                <h1>📚 지식 관리</h1>
+                
+                <div class="content-section">
+                    <h3>최근 등록된 지식</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>분야</th>
+                                <th>등록일</th>
+                                <th>조회수</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>정밀가공 불량률 50% 감소 사례</td>
+                                <td>김기계</td>
+                                <td>제조업</td>
+                                <td>2024-06-10</td>
+                                <td>156</td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>친환경 농법 가이드</td>
+                                <td>박농부</td>
+                                <td>농업</td>
+                                <td>2024-06-08</td>
+                                <td>89</td>
+                                <td>
+                                    <button class="btn btn-view">상세</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="statistics" class="section" style="display: none;">
+                <h1>📈 통계</h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <span class="stat-number">23%</span>
+                        <div class="stat-label">이번 달 성장률</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                        <span class="stat-number">4.8</span>
+                        <div class="stat-label">평균 만족도</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span class="stat-number">92%</span>
+                        <div class="stat-label">성공 매칭률</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <span class="stat-number">45일</span>
+                        <div class="stat-label">평균 멘토링 기간</div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3>지역별 활동 현황</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>지역</th>
+                                <th>등록 멘토</th>
+                                <th>등록 멘티</th>
+                                <th>진행 중 매칭</th>
+                                <th>완료 매칭</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>경상북도</td>
+                                <td>42명</td>
+                                <td>89명</td>
+                                <td>15건</td>
+                                <td>34건</td>
+                            </tr>
+                            <tr>
+                                <td>울산광역시</td>
+                                <td>35명</td>
+                                <td>67명</td>
+                                <td>12건</td>
+                                <td>28건</td>
+                            </tr>
+                            <tr>
+                                <td>부산광역시</td>
+                                <td>28명</td>
+                                <td>54명</td>
+                                <td>8건</td>
+                                <td>19건</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
