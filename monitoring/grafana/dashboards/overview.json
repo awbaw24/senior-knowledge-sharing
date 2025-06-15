@@ -1,0 +1,384 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "🏛️ Senior Knowledge Sharing Platform - Overview",
+    "tags": [
+      "knowledge-sharing",
+      "application",
+      "monitoring"
+    ],
+    "style": "dark",
+    "timezone": "Asia/Seoul",
+    "editable": true,
+    "graphTooltip": 1,
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "refresh": "30s",
+    "panels": [
+      {
+        "id": 1,
+        "title": "📊 전체 시스템 상태",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "up{job=~\"backend-api|frontend|postgres|redis\"}",
+            "legendFormat": "{{job}} - {{instance}}",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 1
+                }
+              ]
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "text": "DOWN"
+                  },
+                  "1": {
+                    "text": "UP"
+                  }
+                },
+                "type": "value"
+              }
+            ]
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 2,
+        "title": "🌐 HTTP 요청 처리량 (RPS)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{job=\"backend-api\"}[5m])) by (method, status)",
+            "legendFormat": "{{method}} - {{status}}",
+            "refId": "A"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests per second"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        }
+      },
+      {
+        "id": 3,
+        "title": "⏱️ 응답 시간 (레이턴시)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"backend-api\"}[5m])) by (le))",
+            "legendFormat": "95th percentile",
+            "refId": "A"
+          },
+          {
+            "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{job=\"backend-api\"}[5m])) by (le))",
+            "legendFormat": "50th percentile (median)",
+            "refId": "B"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Seconds",
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        }
+      },
+      {
+        "id": 4,
+        "title": "📈 비즈니스 메트릭",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(increase(user_registrations_total[1h]))",
+            "legendFormat": "신규 가입자 (시간당)",
+            "refId": "A"
+          },
+          {
+            "expr": "sum(increase(mentoring_sessions_completed_total[1h]))",
+            "legendFormat": "완료된 멘토링 (시간당)",
+            "refId": "B"
+          },
+          {
+            "expr": "sum(increase(knowledge_articles_created_total[1h]))",
+            "legendFormat": "새 지식 아티클 (시간당)",
+            "refId": "C"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        }
+      },
+      {
+        "id": 5,
+        "title": "💾 데이터베이스 성능",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "avg(pg_stat_database_tup_fetched{datname=\"knowledge_sharing\"})",
+            "legendFormat": "Rows Fetched",
+            "refId": "A"
+          },
+          {
+            "expr": "avg(pg_stat_database_tup_inserted{datname=\"knowledge_sharing\"})",
+            "legendFormat": "Rows Inserted",
+            "refId": "B"
+          },
+          {
+            "expr": "avg(pg_stat_database_tup_updated{datname=\"knowledge_sharing\"})",
+            "legendFormat": "Rows Updated",
+            "refId": "C"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        }
+      },
+      {
+        "id": 6,
+        "title": "⚡ Redis 캐시 성능",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(redis_commands_processed_total[5m])",
+            "legendFormat": "Commands/sec",
+            "refId": "A"
+          },
+          {
+            "expr": "redis_connected_clients",
+            "legendFormat": "Connected Clients",
+            "refId": "B"
+          },
+          {
+            "expr": "redis_memory_used_bytes / redis_memory_max_bytes * 100",
+            "legendFormat": "Memory Usage %",
+            "refId": "C"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        }
+      },
+      {
+        "id": 7,
+        "title": "🖥️ 시스템 리소스 (CPU)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+            "legendFormat": "{{instance}} CPU Usage",
+            "refId": "A"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "CPU Usage %",
+            "max": 100,
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        }
+      },
+      {
+        "id": 8,
+        "title": "💾 시스템 리소스 (Memory)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
+            "legendFormat": "{{instance}} Memory Usage",
+            "refId": "A"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Memory Usage %",
+            "max": 100,
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        }
+      },
+      {
+        "id": 9,
+        "title": "🐳 Kubernetes Pods 상태",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "kube_pod_info{namespace=\"knowledge-sharing\"}",
+            "format": "table",
+            "refId": "A"
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "__name__": true,
+                "job": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "pod": "Pod Name",
+                "node": "Node",
+                "created_by_kind": "Created By",
+                "created_by_name": "Controller"
+              }
+            }
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        }
+      },
+      {
+        "id": 10,
+        "title": "🔥 Top 5 에러 엔드포인트",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "topk(5, sum by (method, handler) (rate(http_requests_total{status=~\"4..|5..\"}[5m])))",
+            "format": "table",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 40
+        }
+      },
+      {
+        "id": 11,
+        "title": "📱 사용자 활동 패턴",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "sum by (hour) (increase(http_requests_total{job=\"backend-api\"}[1h]))",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 40
+        }
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "Prometheus",
+          "expr": "resets(process_start_time_seconds[1h])",
+          "titleFormat": "Service Restart",
+          "textFormat": "{{job}} restarted"
+        }
+      ]
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "namespace",
+          "query": "label_values(kube_pod_info, namespace)",
+          "current": {
+            "value": "knowledge-sharing"
+          },
+          "options": [],
+          "type": "query"
+        },
+        {
+          "name": "pod",
+          "query": "label_values(kube_pod_info{namespace=\"$namespace\"}, pod)",
+          "current": {
+            "value": "All"
+          },
+          "includeAll": true,
+          "type": "query"
+        }
+      ]
+    }
+  },
+  "overwrite": true
+}
