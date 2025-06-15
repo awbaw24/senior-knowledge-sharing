@@ -27,6 +27,7 @@ body {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
 .nav-container {
@@ -169,6 +170,57 @@ body {
     margin-left: auto;
     margin-right: auto;
     animation: fadeInUp 1s ease 0.2s both;
+}
+
+/* 이메일 인증 배너 스타일 */
+.email-verification-banner {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+    animation: bounce 2s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+}
+
+.email-verification-banner i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.email-verification-banner p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.email-verification-banner button {
+    background: white;
+    color: #e67e22;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.email-verification-banner button:hover {
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 .hero-stats {
@@ -509,8 +561,14 @@ body {
     margin-bottom: 2rem;
 }
 
-.footer-section h3, .footer-section h4 {
+.footer-section h3, .footer-section h4, .footer-section h5 {
     margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section h5 {
+    color: #667eea;
+    font-size: 1rem;
 }
 
 .footer-section ul {
@@ -529,6 +587,42 @@ body {
 
 .footer-section a:hover {
     color: #ffd700;
+}
+
+/* 이메일 인증 섹션 스타일 */
+.email-verification-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.email-verification-section h4 {
+    margin-bottom: 0.5rem;
+    color: #667eea !important;
+}
+
+.email-verification-section p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.email-verification-section button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.email-verification-section button:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
 }
 
 .social-links {
@@ -603,7 +697,7 @@ body {
 }
 
 /* 폼 스타일 */
-.signup-form, .contact-form, .login-form {
+.signup-form, .contact-form, .login-form, .email-verification {
     max-width: 500px;
     margin: 0 auto;
 }
@@ -637,6 +731,76 @@ body {
     border-color: #667eea;
 }
 
+/* 이메일 인증 스타일 */
+.email-verification {
+    text-align: center;
+    padding: 2rem;
+}
+
+.email-verification h2 {
+    color: #667eea;
+    margin-bottom: 2rem;
+}
+
+.email-verification h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.email-verification h4 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.email-verification .fa-envelope {
+    font-size: 4rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.email-verification ol {
+    text-align: left;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.email-verification ol li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+/* 등록된 이메일 목록 스타일 */
+.registered-emails {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.email-list {
+    margin-bottom: 2rem;
+}
+
+.email-item {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.email-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.email-item.verified {
+    background: #f0f8f0;
+    border-color: #28a745;
+}
+
+.email-item.pending {
+    background: #fff8f0;
+    border-color: #ffc107;
+}
+
 /* 멘토 그리드 */
 .mentor-grid {
     display: grid;
@@ -645,12 +809,19 @@ body {
     margin-top: 2rem;
 }
 
+.mentor-list h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
 .mentor-card {
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
     transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
 }
 
 .mentor-card:hover {
@@ -664,9 +835,15 @@ body {
     margin-bottom: 1rem;
 }
 
+.mentor-card h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
 .mentor-title {
     color: #666;
     margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
 .mentor-experience {
@@ -703,6 +880,111 @@ body {
 .btn-contact:hover {
     background: #218838;
     transform: translateY(-2px);
+}
+
+/* 지식 상세 보기 스타일 */
+.knowledge-detail {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.knowledge-detail h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.knowledge-detail .knowledge-meta {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.knowledge-content h3 {
+    color: #667eea;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.knowledge-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.knowledge-content li {
+    margin-bottom: 0.5rem;
+}
+
+.knowledge-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* 커뮤니티 상세 스타일 */
+.community-detail {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.community-detail h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.community-detail h3 {
+    color: #667eea;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.community-detail ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.community-detail li {
+    margin-bottom: 0.5rem;
+}
+
+/* 성공/에러 메시지 스타일 */
+.success-message {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    z-index: 3000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+.error-message {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #dc3545;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    z-index: 3000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* 애니메이션 */
@@ -804,6 +1086,15 @@ body {
         flex-direction: column;
         gap: 0.5rem;
     }
+    
+    .mentor-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .email-verification-banner {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -824,7 +1115,48 @@ body {
         margin: 15% auto;
     }
     
-    .mentor-grid {
-        grid-template-columns: 1fr;
+    .email-verification {
+        padding: 1rem;
+    }
+    
+    .success-message, .error-message {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 0.75rem 1rem;
     }
 }
+
+/* 추가 유틸리티 클래스 */
+.text-center {
+    text-align: center;
+}
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+
+.text-primary { color: #667eea; }
+.text-success { color: #28a745; }
+.text-warning { color: #ffc107; }
+.text-danger { color: #dc3545; }
+
+.bg-primary { background-color: #667eea; }
+.bg-success { background-color: #28a745; }
+.bg-warning { background-color: #ffc107; }
+.bg-danger { background-color: #dc3545; }
+
+.border-radius { border-radius: 8px; }
+.border-radius-sm { border-radius: 4px; }
+.border-radius-lg { border-radius: 12px; }
+
+.shadow-sm { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.shadow { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.shadow-lg { box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
