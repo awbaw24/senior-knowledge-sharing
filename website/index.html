@@ -18,6 +18,7 @@
             <ul class="nav-menu">
                 <li><a href="#home">홈</a></li>
                 <li><a href="#mentors">멘토 찾기</a></li>
+                <li><a href="service.html">🔍 서비스 안내</a></li>
                 <li><a href="#knowledge">지식 저장소</a></li>
                 <li><a href="#community">커뮤니티</a></li>
                 <li><a href="#success">성공사례</a></li>
@@ -37,6 +38,7 @@
         <div class="mobile-menu" id="mobileMenu">
             <a href="#home" onclick="closeMobileMenu()">홈</a>
             <a href="#mentors" onclick="closeMobileMenu()">멘토 찾기</a>
+            <a href="service.html">🔍 서비스 안내</a>
             <a href="#knowledge" onclick="closeMobileMenu()">지식 저장소</a>
             <a href="#community" onclick="closeMobileMenu()">커뮤니티</a>
             <a href="#success" onclick="closeMobileMenu()">성공사례</a>
@@ -76,6 +78,9 @@
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="openModal('mentor')">🧑‍🏫 멘토로 참여</button>
                 <button class="btn-secondary" onclick="openModal('mentee')">🎓 멘티로 시작</button>
+                <button class="btn-info" onclick="location.href='service.html'" style="background: #17a2b8; color: white; margin: 0.5rem;">
+                    📋 서비스 자세히 보기
+                </button>
             </div>
             
             <!-- 멘토 검색 기능 추가 -->
@@ -87,6 +92,39 @@
                             style="margin-left: 10px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">
                         <i class="fas fa-search"></i> 검색
                     </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 소개 카드 섹션 추가 -->
+    <section style="padding: 3rem 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">🎯 우리의 서비스</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <i class="fas fa-handshake" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>1:1 맞춤 멘토링</h3>
+                    <p>30년 이상 경력의 은퇴 전문가와 직접 연결</p>
+                    <button class="btn-secondary" onclick="location.href='service.html#how-it-works'">자세히 보기</button>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <i class="fas fa-graduation-cap" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>체계적인 학습</h3>
+                    <p>분야별 정리된 실무 노하우와 성공 사례</p>
+                    <button class="btn-secondary" onclick="location.href='service.html#service-overview'">자세히 보기</button>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>지역별 커뮤니티</h3>
+                    <p>지역 기반 오프라인 모임과 네트워킹</p>
+                    <button class="btn-secondary" onclick="location.href='service.html#pricing'">요금제 보기</button>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <i class="fas fa-question-circle" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h3>궁금한 것이 있으신가요?</h3>
+                    <p>자주 묻는 질문과 상세한 이용 가이드</p>
+                    <button class="btn-secondary" onclick="location.href='service.html#faq'">FAQ 보기</button>
                 </div>
             </div>
         </div>
@@ -292,6 +330,7 @@
                     <h4>빠른 링크</h4>
                     <ul>
                         <li><a href="#mentors">멘토 찾기</a></li>
+                        <li><a href="service.html">📋 서비스 안내</a></li>
                         <li><a href="#knowledge">지식 저장소</a></li>
                         <li><a href="#community">커뮤니티</a></li>
                         <li><a href="#success">성공사례</a></li>
@@ -310,6 +349,9 @@
                         <button onclick="openModal('mentee')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
                             🎓 멘티 신청
                         </button>
+                        <button onclick="location.href='service.html'" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
+                            📋 서비스 안내
+                        </button>
                     </div>
                 </div>
                 
@@ -320,7 +362,7 @@
                     <div class="social-links">
                         <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="mailto:comensee24@gmail.com"><i class="fas fa-envelope"></i></a>
-                        <a href="#" onclick="showServiceGuide()"><i class="fas fa-question-circle"></i></a>
+                        <a href="service.html#faq" onclick="showServiceGuide()"><i class="fas fa-question-circle"></i></a>
                     </div>
                     
                     <!-- 서비스 현황 -->
