@@ -97,14 +97,14 @@
             font-weight: 400;
         }
         
-        .pricing-grid {
+        .donation-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
         
-        .pricing-card {
+        .donation-card {
             background: white;
             border: 2px solid #e1e5e9;
             border-radius: 10px;
@@ -113,34 +113,34 @@
             transition: all 0.3s ease;
         }
         
-        .pricing-card.featured {
-            border-color: #667eea;
+        .donation-card.recommended {
+            border-color: #28a745;
             transform: scale(1.05);
         }
         
-        .pricing-card:hover {
+        .donation-card:hover {
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .pricing-card h3 {
+        .donation-card h3 {
             font-family: 'Paperlogy', sans-serif;
             font-weight: 600;
         }
         
-        .price {
+        .amount {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #667eea;
+            color: #28a745;
             margin: 1rem 0;
             font-family: 'Paperlogy', sans-serif;
         }
         
-        .pricing-card p {
+        .donation-card p {
             font-family: 'Paperlogy', sans-serif;
             font-weight: 400;
         }
         
-        .pricing-card li {
+        .donation-card li {
             font-family: 'Paperlogy', sans-serif;
             font-weight: 400;
         }
@@ -227,7 +227,7 @@
                 <li><a href="index.html">홈</a></li>
                 <li><a href="index.html#mentors">멘토찾기</a></li>
                 <li><a href="#service-overview">서비스소개</a></li>
-                <li><a href="#pricing">요금제</a></li>
+                <li><a href="#donation">기부안내</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="admin.html">관리자</a></li>
             </ul>
@@ -244,8 +244,12 @@
     <!-- 서비스 히어로 섹션 -->
     <section class="service-hero">
         <div class="container">
-            <h1>📋 완전한 멘토링 서비스</h1>
-            <p style="font-size: 1.2rem; margin: 1rem 0;">은퇴 전문가와 학습자를 연결하는 체계적인 지식 공유 플랫폼</p>
+            <h1>📋 완전 무료 멘토링 서비스</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">은퇴 전문가와 학습자를 연결하는 기부 기반 지식 공유 플랫폼</p>
+            <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin: 2rem auto; max-width: 600px;">
+                <h3>💖 기부로 운영되는 사회공헌 플랫폼</h3>
+                <p>모든 서비스는 완전 무료이며, 자발적 기부로 운영됩니다</p>
+            </div>
             <div style="margin-top: 2rem;">
                 <button class="btn-primary" onclick="location.href='index.html'" style="margin: 0.5rem;">
                     🏠 메인으로 돌아가기
@@ -261,6 +265,11 @@
     <section id="service-overview" class="service-section">
         <div class="container">
             <h2>🎯 서비스 개요</h2>
+            <div style="background: #e8f5e8; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;">
+                <h3 style="color: #28a745; margin-bottom: 1rem;">💚 100% 무료 서비스</h3>
+                <p><strong>모든 멘토링 서비스가 완전 무료입니다!</strong><br>
+                은퇴 전문가들의 봉사 정신과 후원자들의 따뜻한 마음으로 운영됩니다.</p>
+            </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🤝</div>
@@ -361,82 +370,88 @@
         </div>
     </section>
 
-    <!-- 요금제 -->
-    <section id="pricing" class="service-section">
+    <!-- 기부 안내 -->
+    <section id="donation" class="service-section">
         <div class="container">
-            <h2>💰 투명한 요금제</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">은퇴자 전문가들의 귀중한 경험을 합리적인 가격에 제공합니다</p>
+            <h2>💝 자발적 기부로 함께 만드는 지식 공유</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">
+                🌟 <strong>모든 서비스는 완전 무료입니다!</strong> 🌟<br>
+                선택적 기부를 통해 더 많은 분들이 혜택을 받을 수 있도록 도와주세요
+            </p>
             
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>🌱 베이직</h3>
-                    <div class="price">무료</div>
-                    <p>기본 서비스 체험</p>
+            <div class="donation-grid">
+                <div class="donation-card">
+                    <h3>🌱 감사 기부</h3>
+                    <div class="amount">월 1만원</div>
+                    <p>멘토링을 받은 후 감사의 마음으로</p>
                     <ul style="text-align: left; margin: 2rem 0;">
-                        <li>✅ 지식 저장소 열람</li>
-                        <li>✅ 커뮤니티 참여</li>
-                        <li>✅ 월 1회 멘토 상담</li>
-                        <li>✅ 기본 성공사례 확인</li>
-                        <li>❌ 1:1 정기 멘토링</li>
-                        <li>❌ 전문 자료 다운로드</li>
+                        <li>✅ 서비스 운영비 지원</li>
+                        <li>✅ 신규 멘토 발굴 지원</li>
+                        <li>✅ 플랫폼 개선 기여</li>
+                        <li>✅ 기부자 명예 뱃지</li>
+                        <li>✅ 연말 기부금 영수증</li>
                     </ul>
-                    <button class="btn-secondary" onclick="openModal('signup')">무료 가입</button>
+                    <button class="btn-secondary" onclick="openModal('donation')">감사 기부하기</button>
                 </div>
                 
-                <div class="pricing-card featured">
-                    <h3>🚀 프리미엄</h3>
-                    <div class="price">월 9만원</div>
-                    <p>완전한 멘토링 서비스</p>
+                <div class="donation-card recommended">
+                    <h3>🚀 응원 기부</h3>
+                    <div class="amount">월 3만원</div>
+                    <p>지식 공유 문화 확산 응원</p>
                     <ul style="text-align: left; margin: 2rem 0;">
-                        <li>✅ 모든 베이직 기능</li>
-                        <li>✅ 주 1회 1:1 멘토링 (월 4회)</li>
-                        <li>✅ 전문 자료 무제한 다운로드</li>
-                        <li>✅ 우선 멘토 매칭</li>
-                        <li>✅ 화상회의 지원</li>
-                        <li>✅ 개인 성과 리포트</li>
+                        <li>✅ 모든 감사 기부 혜택</li>
+                        <li>✅ 농어촌 활성화 프로젝트 지원</li>
+                        <li>✅ 취약계층 멘토링 지원</li>
+                        <li>✅ 우선 고객 지원</li>
+                        <li>✅ 연중 감사 이벤트 초대</li>
+                        <li>✅ 후원자 전용 커뮤니티</li>
                     </ul>
-                    <button class="btn-primary" onclick="openModal('premium')">프리미엄 시작</button>
-                    <div style="background: #ffd700; color: #333; padding: 0.5rem; margin-top: 1rem; border-radius: 5px; font-weight: 600;">
-                        🎉 첫 달 50% 할인!
+                    <button class="btn-primary" onclick="openModal('donation')">응원 기부하기</button>
+                    <div style="background: #28a745; color: white; padding: 0.5rem; margin-top: 1rem; border-radius: 5px; font-weight: 600;">
+                        💚 추천 기부액
                     </div>
                 </div>
                 
-                <div class="pricing-card">
-                    <h3>🏢 기업</h3>
-                    <div class="price">맞춤 견적</div>
-                    <p>조직 전체 교육 솔루션</p>
+                <div class="donation-card">
+                    <h3>🏢 기업 후원</h3>
+                    <div class="amount">맞춤 후원</div>
+                    <p>기업의 사회적 책임 실현</p>
                     <ul style="text-align: left; margin: 2rem 0;">
-                        <li>✅ 모든 프리미엄 기능</li>
-                        <li>✅ 기업 전용 멘토 풀</li>
-                        <li>✅ 그룹 멘토링 세션</li>
-                        <li>✅ 맞춤형 교육 프로그램</li>
+                        <li>✅ 모든 응원 기부 혜택</li>
+                        <li>✅ 기업명 플랫폼 게재</li>
+                        <li>✅ 임직원 우선 멘토링</li>
+                        <li>✅ 맞춤형 기업 교육 프로그램</li>
+                        <li>✅ CSR 보고서 작성 지원</li>
                         <li>✅ 전담 고객 관리자</li>
-                        <li>✅ 상세한 성과 분석 대시보드</li>
                     </ul>
-                    <button class="btn-secondary" onclick="openModal('enterprise')">문의하기</button>
+                    <button class="btn-secondary" onclick="openModal('corporate')">기업 후원 문의</button>
                 </div>
             </div>
             
-            <!-- 특별 할인 정보 -->
-            <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 10px; margin-top: 2rem; text-align: center;">
-                <h3>🎁 특별 혜택</h3>
+            <!-- 기부 사용 내역 -->
+            <div style="background: linear-gradient(45deg, #28a745, #20c997); color: white; padding: 2rem; border-radius: 10px; margin-top: 2rem; text-align: center;">
+                <h3>💰 기부금 사용 내역 (투명 공개)</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                     <div>
-                        <strong>🎓 학생 할인</strong><br>
-                        학생증 인증 시 30% 할인
+                        <strong>🖥️ 서버 운영비</strong><br>
+                        월 기부금의 30%
                     </div>
                     <div>
-                        <strong>👥 단체 할인</strong><br>
-                        5명 이상 시 20% 할인
+                        <strong>👥 멘토 활동비</strong><br>
+                        월 기부금의 40%
                     </div>
                     <div>
-                        <strong>🌾 농어촌 지원</strong><br>
-                        농어촌 거주자 50% 할인
+                        <strong>🌾 농어촌 프로젝트</strong><br>
+                        월 기부금의 20%
                     </div>
                     <div>
-                        <strong>🏆 성과 보장</strong><br>
-                        30일 무조건 환불 보장
+                        <strong>🔧 플랫폼 개선</strong><br>
+                        월 기부금의 10%
                     </div>
+                </div>
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.2); border-radius: 5px;">
+                    <strong>📊 이번 달 누적 기부: 347만원</strong><br>
+                    <small>멘토 156명 활동비 지원 | 농어촌 프로젝트 15개 운영 | 신규 기능 3개 개발</small>
                 </div>
             </div>
         </div>
@@ -447,6 +462,23 @@
         <div class="container">
             <h2>❓ 자주 묻는 질문 (FAQ)</h2>
             
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Q. 정말 모든 서비스가 무료인가요?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>A.</strong> 네, 100% 무료입니다!</p>
+                    <ul>
+                        <li>• <strong>멘토링 서비스</strong>: 1:1 맞춤 멘토링 완전 무료</li>
+                        <li>• <strong>지식 저장소</strong>: 모든 자료 무료 열람 및 다운로드</li>
+                        <li>• <strong>커뮤니티</strong>: 지역별 모임 및 네트워킹 무료 참여</li>
+                        <li>• <strong>고객 지원</strong>: 24시간 고객 지원 서비스 무료</li>
+                    </ul>
+                    <p>기부는 완전히 자발적이며, 기부 여부와 상관없이 모든 서비스를 동일하게 이용할 수 있습니다.</p>
+                </div>
+            </div>
+
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     Q. 멘토의 전문성은 어떻게 검증하나요?
@@ -466,37 +498,18 @@
 
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Q. 멘토링은 어떤 방식으로 진행되나요?
+                    Q. 기부를 하지 않으면 서비스 제한이 있나요?
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="faq-answer">
-                    <p><strong>A.</strong> 다양한 방식으로 멘토링이 진행됩니다:</p>
+                    <p><strong>A.</strong> 전혀 없습니다!</p>
                     <ul>
-                        <li>• <strong>화상 멘토링</strong>: Zoom, Google Meet 등을 활용한 온라인 세션</li>
-                        <li>• <strong>오프라인 만남</strong>: 카페, 사무실, 현장 방문 등 직접 만남</li>
-                        <li>• <strong>실습 위주</strong>: 실제 업무 환경에서의 실습과 피드백</li>
-                        <li>• <strong>과제 및 프로젝트</strong>: 실무 과제를 통한 단계별 성장</li>
-                        <li>• <strong>그룹 세션</strong>: 필요시 동일 분야 멘티들과의 그룹 학습</li>
+                        <li>• <strong>동일한 서비스</strong>: 기부 여부와 관계없이 모든 기능 동일하게 이용</li>
+                        <li>• <strong>차별 없음</strong>: 멘토 매칭, 지원 서비스 등에서 어떤 차별도 없음</li>
+                        <li>• <strong>자발적 참여</strong>: 기부는 순수하게 자발적인 사회 기여 활동</li>
+                        <li>• <strong>감사 표시</strong>: 기부자에게는 감사의 마음을 표시하는 작은 혜택만 제공</li>
                     </ul>
-                    <p>멘토와 멘티가 상호 합의하여 가장 효과적인 방식을 선택할 수 있습니다.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    Q. 결제 및 환불 정책은 어떻게 되나요?
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    <p><strong>A.</strong> 투명하고 공정한 결제 시스템을 운영합니다:</p>
-                    <ul>
-                        <li>• <strong>결제 방식</strong>: 신용카드, 계좌이체, 가상계좌 등 다양한 방법 지원</li>
-                        <li>• <strong>정기 결제</strong>: 매월 자동 결제로 편리하게 이용</li>
-                        <li>• <strong>30일 환불 보장</strong>: 서비스가 만족스럽지 않으면 30일 내 100% 환불</li>
-                        <li>• <strong>부분 환불</strong>: 미사용 세션에 대해서는 비례 환불</li>
-                        <li>• <strong>할부 결제</strong>: 6개월까지 무이자 할부 가능</li>
-                    </ul>
-                    <p>모든 결제는 안전한 PG사를 통해 처리되며, 개인정보는 암호화 보호됩니다.</p>
+                    <p>우리의 목표는 지식 공유이며, 경제적 여건과 상관없이 모든 분이 혜택받으시기를 바랍니다.</p>
                 </div>
             </div>
 
@@ -506,7 +519,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="faq-answer">
-                    <p><strong>A.</strong> 농어촌 지역 발전을 위한 특별 프로그램입니다:</p>
+                    <p><strong>A.</strong> 농어촌 지역 발전을 위한 특별 무료 프로그램입니다:</p>
                     <ul>
                         <li>• <strong>귀농/귀촌 멘토링</strong>: 성공한 농업인들의 실전 노하우 전수</li>
                         <li>• <strong>6차 산업화 지원</strong>: 농산물 가공, 유통, 관광 연계 사업 지도</li>
@@ -514,7 +527,7 @@
                         <li>• <strong>농촌체험 프로그램</strong>: 도시민 대상 체험 사업 개발</li>
                         <li>• <strong>지역 브랜딩</strong>: 지역 특산품 브랜드화 및 마케팅</li>
                     </ul>
-                    <p>농어촌 거주자는 50% 할인 혜택과 우선 지원을 받을 수 있습니다.</p>
+                    <p>농어촌 거주자는 특별 우선 지원을 받을 수 있으며, 기부금의 20%가 농어촌 프로젝트에 사용됩니다.</p>
                 </div>
             </div>
 
@@ -542,7 +555,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="faq-answer">
-                    <p><strong>A.</strong> 24시간 고객 지원 시스템을 운영합니다:</p>
+                    <p><strong>A.</strong> 24시간 무료 고객 지원 시스템을 운영합니다:</p>
                     <ul>
                         <li>• <strong>실시간 채팅</strong>: 웹사이트 우하단 챗봇으로 즉시 문의</li>
                         <li>• <strong>이메일 지원</strong>: support@awbaw24.com (24시간 내 답변)</li>
@@ -550,7 +563,7 @@
                         <li>• <strong>원격 지원</strong>: 화면 공유를 통한 직접적인 기술 지원</li>
                         <li>• <strong>FAQ 및 가이드</strong>: 자세한 이용 가이드 및 튜토리얼 제공</li>
                     </ul>
-                    <p>프리미엄 회원은 전담 고객 관리자가 배정되어 더욱 신속한 지원을 받을 수 있습니다.</p>
+                    <p>모든 고객 지원은 완전 무료이며, 기부자에게는 전담 관리자가 배정됩니다.</p>
                 </div>
             </div>
         </div>
@@ -590,13 +603,16 @@
                 <div class="footer-section">
                     <h3>🏛️ 은퇴자 지식 공유</h3>
                     <p>평생에 걸쳐 쌓아온 소중한 경험과 지혜를 다음 세대에게 전하는 플랫폼</p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 5px;">
+                        <strong style="color: #28a745;">💚 100% 무료 • 기부 기반 • 사회공헌</strong>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>바로가기</h4>
                     <ul>
                         <li><a href="index.html">홈</a></li>
                         <li><a href="index.html#mentors">멘토찾기</a></li>
-                        <li><a href="#pricing">요금제</a></li>
+                        <li><a href="#donation">기부안내</a></li>
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="admin.html">관리자</a></li>
                     </ul>
@@ -663,7 +679,7 @@
             switch(type) {
                 case 'signup':
                     modalHTML = `
-                        <h2>🎉 회원가입</h2>
+                        <h2>🎉 회원가입 (완전 무료)</h2>
                         <form style="max-width: 400px;">
                             <div style="margin: 1rem 0;">
                                 <label>이름</label>
@@ -682,29 +698,34 @@
                                     <option>서비스업</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">가입하기</button>
+                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">무료 가입하기</button>
                         </form>
+                        <p style="text-align: center; margin-top: 1rem; color: #28a745;">
+                            💚 평생 무료 • 숨겨진 비용 없음 • 언제든 탈퇴 가능
+                        </p>
                     `;
                     break;
-                case 'premium':
+                case 'donation':
                     modalHTML = `
-                        <h2>🚀 프리미엄 멤버십</h2>
+                        <h2>💝 자발적 기부</h2>
                         <div style="text-align: center;">
-                            <h3 style="color: #667eea;">월 9만원 → 첫 달 4만 5천원</h3>
-                            <ul style="text-align: left; margin: 2rem 0;">
-                                <li>✅ 주 1회 1:1 멘토링 (월 4회)</li>
-                                <li>✅ 전문 자료 무제한 다운로드</li>
-                                <li>✅ 우선 멘토 매칭</li>
-                                <li>✅ 화상회의 지원</li>
-                                <li>✅ 개인 성과 리포트</li>
-                            </ul>
-                            <button class="btn-primary" style="width: 100%;" onclick="alert('결제 시스템 준비중입니다!')">프리미엄 시작하기</button>
+                            <p style="color: #28a745; font-weight: 600;">기부해주셔서 감사합니다!</p>
+                            <div style="margin: 2rem 0;">
+                                <h4>기부 방법 선택</h4>
+                                <button class="btn-primary" style="width: 100%; margin: 0.5rem;" onclick="alert('정기 기부 설정 페이지로 이동합니다.')">정기 기부 (추천)</button>
+                                <button class="btn-secondary" style="width: 100%; margin: 0.5rem;" onclick="alert('일시 기부 페이지로 이동합니다.')">일시 기부</button>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666;">
+                                ✅ 100% 세금 공제<br>
+                                ✅ 투명한 사용 내역 공개<br>
+                                ✅ 언제든 중단 가능
+                            </p>
                         </div>
                     `;
                     break;
-                case 'enterprise':
+                case 'corporate':
                     modalHTML = `
-                        <h2>🏢 기업 문의</h2>
+                        <h2>🏢 기업 후원 문의</h2>
                         <form style="max-width: 400px;">
                             <div style="margin: 1rem 0;">
                                 <label>회사명</label>
@@ -719,10 +740,15 @@
                                 <input type="tel" style="width: 100%; padding: 10px; margin-top: 5px;">
                             </div>
                             <div style="margin: 1rem 0;">
-                                <label>예상 이용자 수</label>
-                                <input type="number" style="width: 100%; padding: 10px; margin-top: 5px;">
+                                <label>후원 관심 분야</label>
+                                <select style="width: 100%; padding: 10px; margin-top: 5px;">
+                                    <option>전체 플랫폼 후원</option>
+                                    <option>농어촌 활성화</option>
+                                    <option>취약계층 지원</option>
+                                    <option>기업 임직원 멘토링</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">견적 요청</button>
+                            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">후원 문의</button>
                         </form>
                     `;
                     break;
