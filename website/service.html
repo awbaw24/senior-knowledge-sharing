@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📋 서비스 안내 - 은퇴자 지식 공유 플랫폼</title>
+    <!-- Paperlogy 폰트 추가 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paperlogy:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family: 'Paperlogy', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         .service-hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 4rem 0;
             text-align: center;
+            margin-top: 70px;
+        }
+        
+        .service-hero h1 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 700;
+        }
+        
+        .service-hero p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
         }
         
         .service-section {
@@ -21,6 +40,16 @@
         
         .service-section:last-child {
             border-bottom: none;
+        }
+        
+        .service-section h2, .service-section h3, .service-section h4, .service-section h5 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        .service-section p, .service-section li {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
         }
         
         .process-steps {
@@ -55,6 +84,17 @@
             margin: 0 auto 1rem;
             font-size: 1.2rem;
             font-weight: bold;
+            font-family: 'Paperlogy', sans-serif;
+        }
+        
+        .step-card h4 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        .step-card p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
         }
         
         .pricing-grid {
@@ -82,11 +122,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
+        .pricing-card h3 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
         .price {
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 700;
             color: #667eea;
             margin: 1rem 0;
+            font-family: 'Paperlogy', sans-serif;
+        }
+        
+        .pricing-card p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+        }
+        
+        .pricing-card li {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
         }
         
         .faq-item {
@@ -109,12 +165,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-family: 'Paperlogy', sans-serif;
         }
         
         .faq-answer {
             padding: 1.5rem;
             display: none;
             border-top: 1px solid #eee;
+        }
+        
+        .faq-answer p, .faq-answer li {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
         }
         
         .feature-grid {
@@ -132,9 +194,24 @@
             text-align: center;
         }
         
+        .feature-card h3 {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            font-family: 'Paperlogy', sans-serif;
+            font-weight: 400;
+        }
+        
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+        }
+        
+        button {
+            font-family: 'Paperlogy', sans-serif !important;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -148,8 +225,8 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">홈</a></li>
-                <li><a href="index.html#mentors">멘토 찾기</a></li>
-                <li><a href="#service-overview">서비스 소개</a></li>
+                <li><a href="index.html#mentors">멘토찾기</a></li>
+                <li><a href="#service-overview">서비스소개</a></li>
                 <li><a href="#pricing">요금제</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="admin.html">관리자</a></li>
@@ -319,7 +396,7 @@
                         <li>✅ 개인 성과 리포트</li>
                     </ul>
                     <button class="btn-primary" onclick="openModal('premium')">프리미엄 시작</button>
-                    <div style="background: #ffd700; color: #333; padding: 0.5rem; margin-top: 1rem; border-radius: 5px; font-weight: bold;">
+                    <div style="background: #ffd700; color: #333; padding: 0.5rem; margin-top: 1rem; border-radius: 5px; font-weight: 600;">
                         🎉 첫 달 50% 할인!
                     </div>
                 </div>
@@ -518,7 +595,7 @@
                     <h4>바로가기</h4>
                     <ul>
                         <li><a href="index.html">홈</a></li>
-                        <li><a href="index.html#mentors">멘토 찾기</a></li>
+                        <li><a href="index.html#mentors">멘토찾기</a></li>
                         <li><a href="#pricing">요금제</a></li>
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="admin.html">관리자</a></li>
@@ -664,6 +741,14 @@
             const modal = document.getElementById('modal');
             if (event.target === modal) {
                 modal.style.display = 'none';
+            }
+        }
+        
+        // 모바일 메뉴 함수들
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
             }
         }
     </script>
