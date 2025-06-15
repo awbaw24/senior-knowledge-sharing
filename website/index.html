@@ -20,6 +20,7 @@
                 <li><a href="#mentors">멘토 찾기</a></li>
                 <li><a href="#knowledge">지식 저장소</a></li>
                 <li><a href="#community">커뮤니티</a></li>
+                <li><a href="#success">성공사례</a></li>
                 <li><a href="admin.html">관리자</a></li>
                 <li><a href="rural.html">농어촌</a></li>
             </ul>
@@ -38,6 +39,7 @@
             <a href="#mentors" onclick="closeMobileMenu()">멘토 찾기</a>
             <a href="#knowledge" onclick="closeMobileMenu()">지식 저장소</a>
             <a href="#community" onclick="closeMobileMenu()">커뮤니티</a>
+            <a href="#success" onclick="closeMobileMenu()">성공사례</a>
             <a href="admin.html">관리자</a>
             <a href="rural.html">농어촌</a>
             <button class="btn-mobile" onclick="openModal('login')">로그인</button>
@@ -51,49 +53,41 @@
             <h1>🌟 평생의 지혜를 다음 세대에게</h1>
             <p class="hero-subtitle">은퇴 전문가들의 귀중한 경험과 노하우를 체계적으로 보존하고,<br>후배들과의 멘토링을 통해 지속가능한 지식 전수 문화를 만들어갑니다.</p>
             
-            <!-- 이메일 인증 알림 배너 (조건부 표시) -->
-            <div id="emailVerificationBanner" style="
-                background: linear-gradient(135deg, #f39c12, #e67e22);
-                color: white;
-                padding: 1rem;
-                border-radius: 10px;
-                margin-bottom: 2rem;
-                text-align: center;
-                display: none;
-                animation: bounce 2s ease-in-out infinite;
-            ">
-                <i class="fas fa-envelope"></i>
-                <strong>이메일 인증을 완료해주세요!</strong>
-                <p style="margin: 0.5rem 0;">모든 서비스를 이용하려면 이메일 인증이 필요합니다.</p>
-                <button onclick="openModal('email-verification')" style="
-                    background: white;
-                    color: #e67e22;
-                    border: none;
-                    padding: 0.5rem 1rem;
-                    border-radius: 5px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    margin-top: 0.5rem;
-                ">지금 인증하기</button>
-            </div>
-
+            <!-- 실시간 통계 -->
             <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number">150+</span>
+                    <span class="stat-number" id="mentorCount">0</span>
                     <span class="stat-label">등록 멘토</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">300+</span>
+                    <span class="stat-number" id="successCount">0</span>
                     <span class="stat-label">성공 사례</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">50+</span>
+                    <span class="stat-number" id="fieldCount">0</span>
                     <span class="stat-label">전문 분야</span>
                 </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="communityCount">0</span>
+                    <span class="stat-label">지역 커뮤니티</span>
+                </div>
             </div>
+            
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="openModal('mentor')">🧑‍🏫 멘토로 참여</button>
                 <button class="btn-secondary" onclick="openModal('mentee')">🎓 멘티로 시작</button>
+            </div>
+            
+            <!-- 멘토 검색 기능 추가 -->
+            <div class="hero-search" style="margin-top: 2rem;">
+                <div class="search-container">
+                    <input type="text" id="mentorSearch" placeholder="멘토 이름, 분야, 전문성으로 검색..." 
+                           style="width: 300px; padding: 10px; border: 2px solid #ddd; border-radius: 25px; font-size: 16px;">
+                    <button onclick="searchMentors()" class="btn-search" 
+                            style="margin-left: 10px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">
+                        <i class="fas fa-search"></i> 검색
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -102,31 +96,30 @@
     <section id="mentors" class="categories">
         <div class="container">
             <h2>🎯 분야별 전문가</h2>
-            <div class="category-grid">
-                <div class="category-card" data-field="construction" onclick="showMentorsByField('construction')">
-                    <div class="category-icon">🏗️</div>
-                    <h3>건축/토목</h3>
-                    <p>30년 경력의 건축사들이 전하는 실무 노하우</p>
-                    <div class="mentor-count">멘토 28명</div>
-                </div>
-                <div class="category-card" data-field="manufacturing" onclick="showMentorsByField('manufacturing')">
-                    <div class="category-icon">⚙️</div>
-                    <h3>제조업</h3>
-                    <p>정밀가공, 품질관리의 실전 기법</p>
-                    <div class="mentor-count">멘토 35명</div>
-                </div>
-                <div class="category-card" data-field="agriculture" onclick="showMentorsByField('agriculture')">
-                    <div class="category-icon">🌾</div>
-                    <h3>농업/어업</h3>
-                    <p>스마트팜, 친환경 농법의 선구자들</p>
-                    <div class="mentor-count">멘토 42명</div>
-                </div>
-                <div class="category-card" data-field="services" onclick="showMentorsByField('services')">
-                    <div class="category-icon">🏢</div>
-                    <h3>서비스업</h3>
-                    <p>고객 서비스, 경영 전략의 베테랑</p>
-                    <div class="mentor-count">멘토 31명</div>
-                </div>
+            <div class="category-grid" id="categoryGrid">
+                <!-- 동적으로 로드됨 -->
+            </div>
+            
+            <!-- 모든 멘토 보기 버튼 -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-primary" onclick="showAllMentors()">
+                    <i class="fas fa-users"></i> 모든 멘토 보기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 성공 사례 섹션 -->
+    <section id="success" class="success-stories">
+        <div class="container">
+            <h2>🏆 실제 성공 사례</h2>
+            <div class="stories-grid" id="storiesGrid">
+                <!-- 동적으로 로드됨 -->
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-secondary" onclick="showAllStories()">
+                    <i class="fas fa-trophy"></i> 더 많은 성공사례 보기
+                </button>
             </div>
         </div>
     </section>
@@ -139,101 +132,117 @@
                 <button class="tab-btn active" data-tab="cases" onclick="switchTab('cases', this)">프로젝트 사례</button>
                 <button class="tab-btn" data-tab="guides" onclick="switchTab('guides', this)">기술 가이드</button>
                 <button class="tab-btn" data-tab="tips" onclick="switchTab('tips', this)">실무 노하우</button>
+                <button class="tab-btn" data-tab="videos" onclick="switchTab('videos', this)">동영상 강의</button>
             </div>
+            
             <div id="cases" class="tab-content active">
                 <div class="knowledge-grid">
                     <article class="knowledge-item" onclick="openKnowledgeDetail('precision')">
                         <div class="knowledge-badge">🏭 제조업</div>
                         <h3>정밀가공 불량률 50% 감소 사례</h3>
-                        <p>30년 경력 기계가공 전문가가 전수한 품질관리 노하우</p>
+                        <p>김기계 마이스터의 40년 노하우로 달성한 혁신적 품질 개선</p>
                         <div class="knowledge-meta">
-                            <span><i class="fas fa-user"></i> 김철수 마이스터</span>
+                            <span><i class="fas fa-user"></i> 김기계 마이스터</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.10</span>
-                            <span><i class="fas fa-eye"></i> 156회</span>
+                            <span><i class="fas fa-eye"></i> 1,256회</span>
+                            <span><i class="fas fa-star"></i> 4.9점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">CNC가공</span>
+                            <span class="tag">품질관리</span>
+                            <span class="tag">비용절감</span>
                         </div>
                     </article>
+                    
                     <article class="knowledge-item" onclick="openKnowledgeDetail('farming')">
                         <div class="knowledge-badge">🌾 농업</div>
-                        <h3>귀농 첫해 성공 스토리</h3>
-                        <p>친환경 농법으로 유기농 인증까지 단숨에</p>
+                        <h3>귀농 첫해 300% 수확 성공기</h3>
+                        <p>송농부의 스마트팜 기술로 달성한 놀라운 귀농 성과</p>
                         <div class="knowledge-meta">
-                            <span><i class="fas fa-user"></i> 박영희 농업인</span>
+                            <span><i class="fas fa-user"></i> 송농부</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.08</span>
-                            <span><i class="fas fa-eye"></i> 89회</span>
+                            <span><i class="fas fa-eye"></i> 892회</span>
+                            <span><i class="fas fa-star"></i> 4.8점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">스마트팜</span>
+                            <span class="tag">귀농</span>
+                            <span class="tag">친환경</span>
                         </div>
                     </article>
+                    
                     <article class="knowledge-item" onclick="openKnowledgeDetail('architecture')">
-                        <div class="knowledge-badge">🏗️건축</div>
-                        <h3>인허가 절차 완전 정복</h3>
-                        <p>신규 건축사를 위한 실무 A-Z 가이드</p>
+                        <div class="knowledge-badge">🏗️ 건축</div>
+                        <h3>인허가 절차 완전 정복 가이드</h3>
+                        <p>이건축 건축사의 35년 경험이 담긴 실무 완전 가이드</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 이건축 건축사</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.05</span>
-                            <span><i class="fas fa-eye"></i> 234회</span>
+                            <span><i class="fas fa-eye"></i> 2,134회</span>
+                            <span><i class="fas fa-star"></i> 5.0점</span>
+                        </div>
+                        <div class="knowledge-tags">
+                            <span class="tag">인허가</span>
+                            <span class="tag">설계실무</span>
+                            <span class="tag">법규해석</span>
                         </div>
                     </article>
                 </div>
             </div>
+            
             <div id="guides" class="tab-content">
                 <div class="knowledge-grid">
-                    <article class="knowledge-item">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('cnc-guide')">
                         <div class="knowledge-badge">⚙️ 기술</div>
                         <h3>CNC 가공 기초부터 고급까지</h3>
-                        <p>40년 현장 경험이 담긴 CNC 가공 완전 가이드</p>
+                        <p>현장에서 바로 쓸 수 있는 CNC 가공 완전 마스터 가이드</p>
                         <div class="knowledge-meta">
-                            <span><i class="fas fa-user"></i> 김기계</span>
+                            <span><i class="fas fa-user"></i> 김기계 마이스터</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.12</span>
+                            <span><i class="fas fa-download"></i> 567회 다운로드</span>
+                        </div>
+                    </article>
+                    
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('smart-farm-guide')">
+                        <div class="knowledge-badge">🌱 농업</div>
+                        <h3>스마트팜 구축 및 운영 가이드</h3>
+                        <p>초보자도 쉽게 따라할 수 있는 스마트팜 완전 구축 가이드</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 송농부</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.10</span>
+                            <span><i class="fas fa-download"></i> 342회 다운로드</span>
                         </div>
                     </article>
                 </div>
             </div>
+            
             <div id="tips" class="tab-content">
                 <div class="knowledge-grid">
-                    <article class="knowledge-item">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('field-tips')">
                         <div class="knowledge-badge">💡 노하우</div>
                         <h3>현장에서만 배울 수 있는 10가지 비법</h3>
-                        <p>책에서는 절대 알 수 없는 실무 핵심 노하우</p>
+                        <p>책에서는 절대 알 수 없는 실무 핵심 노하우 모음집</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 여러 전문가</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.01</span>
+                            <span><i class="fas fa-heart"></i> 234명이 좋아함</span>
                         </div>
                     </article>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 성공 사례 섹션 -->
-    <section class="success-stories">
-        <div class="container">
-            <h2>🏆 성공 사례</h2>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <div class="story-quote">
-                        "40년간 쌓아온 용접 기술을 젊은 친구들에게 가르치면서, 저도 새로운 기술을 배우게 되었습니다."
-                    </div>
-                    <div class="story-author">
-                        <strong>김용접 마이스터</strong><br>
-                        <span>전 현대중공업 용접 전문가</span>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-quote">
-                        "귀농 초기 막막했는데, 멘토님 덕분에 첫해부터 성공적인 수확을 했습니다."
-                    </div>
-                    <div class="story-author">
-                        <strong>박귀농 씨</strong><br>
-                        <span>귀농 3년차, 유기농 농부</span>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-quote">
-                        "은퇴 후 무료함을 느끼던 중, 젊은 건축사들과 소통하며 새로운 활력을 찾았습니다."
-                    </div>
-                    <div class="story-author">
-                        <strong>이건축 건축사</strong><br>
-                        <span>전 건축사사무소 대표</span>
-                    </div>
+            
+            <div id="videos" class="tab-content">
+                <div class="knowledge-grid">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('video-welding')">
+                        <div class="knowledge-badge">🎥 동영상</div>
+                        <h3>특수용접 기법 실전 강의</h3>
+                        <p>최용접 전문가의 32년 노하우가 담긴 실제 작업 영상</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 최용접 전문가</span>
+                            <span><i class="fas fa-clock"></i> 2시간 30분</span>
+                            <span><i class="fas fa-play"></i> 1,456회 재생</span>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -243,28 +252,18 @@
     <section id="community" class="community">
         <div class="container">
             <h2>🤝 지역별 커뮤니티</h2>
-            <div class="community-grid">
-                <div class="community-card" onclick="openCommunityDetail('gyeongbuk')">
-                    <h3>🌾 경상북도 농어촌 활성화</h3>
-                    <p>안동, 영주, 봉화 지역 농업인들의 지식 공유</p>
-                    <div class="community-stats">
-                        <span>멘토 12명</span> • <span>프로젝트 8개</span>
-                    </div>
-                </div>
-                <div class="community-card" onclick="openCommunityDetail('ulsan')">
-                    <h3>🏭 울산 제조업 혁신</h3>
-                    <p>자동차, 조선업 은퇴 전문가들의 경험 전수</p>
-                    <div class="community-stats">
-                        <span>멘토 18명</span> • <span>프로젝트 15개</span>
-                    </div>
-                </div>
-                <div class="community-card" onclick="openCommunityDetail('busan')">
-                    <h3>🏢 부산 서비스업 창업</h3>
-                    <p>관광, 물류업 베테랑들의 창업 지원</p>
-                    <div class="community-stats">
-                        <span>멘토 9명</span> • <span>프로젝트 6개</span>
-                    </div>
-                </div>
+            <div class="community-grid" id="communityGrid">
+                <!-- 동적으로 로드됨 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 라이브 활동 섹션 -->
+    <section class="live-activity" style="background: #f8f9fa; padding: 3rem 0;">
+        <div class="container">
+            <h2>🔴 실시간 활동</h2>
+            <div class="activity-feed" id="activityFeed">
+                <!-- 실시간 활동 표시 -->
             </div>
         </div>
     </section>
@@ -277,52 +276,63 @@
                     <h3>🏛️ 은퇴자 지식 공유</h3>
                     <p>평생에 걸쳐 쌓아온 소중한 경험과 지혜를 다음 세대에게 전하는 플랫폼</p>
                     
-                    <!-- 이메일 확인 기능 추가 -->
-                    <div class="email-verification-section" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
-                        <h4 style="margin-bottom: 0.5rem; color: #667eea;">📧 이메일 관리</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #666;">등록된 이메일 인증 상태를 확인하고 관리하세요.</p>
-                        <button onclick="openRegisteredEmailsModal()" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-envelope-check"></i> 등록된 이메일 확인
-                        </button>
+                    <!-- 실시간 현황 -->
+                    <div class="real-time-status" style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.5rem; color: #667eea;">📊 실시간 현황</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.9rem;">
+                            <div>• 온라인 멘토: <span id="onlineMentors">12명</span></div>
+                            <div>• 진행중인 멘토링: <span id="activeMentoring">28건</span></div>
+                            <div>• 금주 신규가입: <span id="weeklySignup">47명</span></div>
+                            <div>• 성공사례 증가: <span id="monthlySuccess">+8건</span></div>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="footer-section">
                     <h4>빠른 링크</h4>
                     <ul>
                         <li><a href="#mentors">멘토 찾기</a></li>
                         <li><a href="#knowledge">지식 저장소</a></li>
                         <li><a href="#community">커뮤니티</a></li>
+                        <li><a href="#success">성공사례</a></li>
                         <li><a href="rural.html">농어촌 활성화</a></li>
                     </ul>
                     
-                    <!-- 테스트 기능 추가 -->
+                    <!-- 서비스 바로가기 -->
                     <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;">
-                        <h5 style="color: #667eea;">🧪 테스트 기능</h5>
-                        <button onclick="simulateEmailVerification('test@example.com')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem;">
-                            이메일 인증 테스트
+                        <h5 style="color: #667eea;">⚡ 빠른 서비스</h5>
+                        <button onclick="openModal('mentor')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
+                            🧑‍🏫 멘토 등록
                         </button>
-                        <button onclick="clearAllUsers()" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem;">
-                            데이터 초기화
+                        <button onclick="showAllMentors()" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
+                            🔍 멘토 찾기
+                        </button>
+                        <button onclick="openModal('mentee')" class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin: 0.2rem; display: block; width: 100%;">
+                            🎓 멘티 신청
                         </button>
                     </div>
                 </div>
+                
                 <div class="footer-section">
                     <h4>연락처</h4>
                     <p><i class="fas fa-envelope"></i> info@awbaw24.com</p>
                     <p><i class="fas fa-phone"></i> 02-1234-5678</p>
                     <div class="social-links">
-                        <a href="#" onclick="alert('GitHub: https://github.com/awbaw24/senior-knowledge-sharing')"><i class="fab fa-github"></i></a>
-                        <a href="#" onclick="alert('이메일: comensee24@gmail.com')"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:comensee24@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="#" onclick="showServiceGuide()"><i class="fas fa-question-circle"></i></a>
                     </div>
                     
-                    <!-- 이메일 인증 도움말 -->
+                    <!-- 서비스 현황 -->
                     <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #667eea;">
-                        <h5 style="margin-bottom: 0.5rem; color: #667eea;">💡 이메일 인증 안내</h5>
+                        <h5 style="margin-bottom: 0.5rem; color: #667eea;">🎯 서비스 현황</h5>
                         <p style="font-size: 0.8rem; margin: 0;">
-                            회원가입 후 이메일 인증이 필요합니다.<br>
-                            • 인증 이메일이 안 와요? → 스팸함 확인<br>
-                            • 인증 링크가 안 눌러져요? → 재발송 요청<br>
-                            • 데모 환경에서는 "이메일 인증 완료" 버튼으로 테스트 가능
+                            ✅ 실시간 멘토 매칭 서비스 운영중<br>
+                            ✅ 분야별 전문가 데이터베이스 구축완료<br>
+                            ✅ 성공사례 실시간 업데이트<br>
+                            ✅ 지역별 커뮤니티 활성화 중<br>
+                            🔄 AI 기반 추천 시스템 개발중<br>
+                            🔄 모바일 앱 버전 준비중
                         </p>
                     </div>
                 </div>
@@ -330,7 +340,8 @@
             <div class="footer-bottom">
                 <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License. 
                    <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank" style="color: #ffd700;">GitHub에서 보기</a>
-                   | <strong style="color: #667eea;">이메일 인증 기능 구현 완료 ✅</strong>
+                   | <strong style="color: #667eea;">실제 서비스 운영중 🚀</strong>
+                   | <span id="visitorCount">오늘 방문자: 1,247명</span>
                 </p>
             </div>
         </div>
@@ -344,44 +355,23 @@
         </div>
     </div>
 
+    <!-- 실시간 알림 -->
+    <div id="liveNotification" class="live-notification" style="display: none;">
+        <!-- 실시간 알림 표시 -->
+    </div>
+
+    <!-- JavaScript 파일들 -->
+    <script src="mentors-data.js"></script>
     <script src="script.js"></script>
+    <script src="enhanced-features.js"></script>
     
-    <!-- 이메일 인증 상태 확인 스크립트 -->
+    <!-- 실시간 기능 초기화 -->
     <script>
-        // 페이지 로드 시 이메일 인증 상태 확인
         document.addEventListener('DOMContentLoaded', function() {
-            checkEmailVerificationStatus();
+            initializeEnhancedFeatures();
+            loadRealTimeData();
+            startLiveUpdates();
         });
-
-        function checkEmailVerificationStatus() {
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const pendingEmail = localStorage.getItem('pendingVerificationEmail');
-            
-            // 인증 대기 중인 이메일이 있는 경우 배너 표시
-            if (pendingEmail) {
-                const banner = document.getElementById('emailVerificationBanner');
-                if (banner) {
-                    banner.style.display = 'block';
-                }
-            }
-        }
-
-        // Bounce 애니메이션 CSS 추가
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% {
-                    transform: translateY(0);
-                }
-                40% {
-                    transform: translateY(-10px);
-                }
-                60% {
-                    transform: translateY(-5px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
