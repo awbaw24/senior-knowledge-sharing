@@ -21,11 +21,27 @@
                 <li><a href="#knowledge">지식 저장소</a></li>
                 <li><a href="#community">커뮤니티</a></li>
                 <li><a href="admin.html">관리자</a></li>
+                <li><a href="rural.html">농어촌</a></li>
             </ul>
             <div class="nav-auth">
-                <button class="btn-login">로그인</button>
-                <button class="btn-signup">회원가입</button>
+                <button class="btn-login" onclick="openModal('login')">로그인</button>
+                <button class="btn-signup" onclick="openModal('signup')">회원가입</button>
             </div>
+            <!-- 모바일 메뉴 버튼 -->
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home" onclick="closeMobileMenu()">홈</a>
+            <a href="#mentors" onclick="closeMobileMenu()">멘토 찾기</a>
+            <a href="#knowledge" onclick="closeMobileMenu()">지식 저장소</a>
+            <a href="#community" onclick="closeMobileMenu()">커뮤니티</a>
+            <a href="admin.html">관리자</a>
+            <a href="rural.html">농어촌</a>
+            <button class="btn-mobile" onclick="openModal('login')">로그인</button>
+            <button class="btn-mobile" onclick="openModal('signup')">회원가입</button>
         </div>
     </nav>
 
@@ -60,25 +76,25 @@
         <div class="container">
             <h2>🎯 분야별 전문가</h2>
             <div class="category-grid">
-                <div class="category-card" data-field="construction">
+                <div class="category-card" data-field="construction" onclick="showMentorsByField('construction')">
                     <div class="category-icon">🏗️</div>
                     <h3>건축/토목</h3>
                     <p>30년 경력의 건축사들이 전하는 실무 노하우</p>
                     <div class="mentor-count">멘토 28명</div>
                 </div>
-                <div class="category-card" data-field="manufacturing">
+                <div class="category-card" data-field="manufacturing" onclick="showMentorsByField('manufacturing')">
                     <div class="category-icon">⚙️</div>
                     <h3>제조업</h3>
                     <p>정밀가공, 품질관리의 실전 기법</p>
                     <div class="mentor-count">멘토 35명</div>
                 </div>
-                <div class="category-card" data-field="agriculture">
+                <div class="category-card" data-field="agriculture" onclick="showMentorsByField('agriculture')">
                     <div class="category-icon">🌾</div>
                     <h3>농업/어업</h3>
                     <p>스마트팜, 친환경 농법의 선구자들</p>
                     <div class="mentor-count">멘토 42명</div>
                 </div>
-                <div class="category-card" data-field="services">
+                <div class="category-card" data-field="services" onclick="showMentorsByField('services')">
                     <div class="category-icon">🏢</div>
                     <h3>서비스업</h3>
                     <p>고객 서비스, 경영 전략의 베테랑</p>
@@ -93,37 +109,66 @@
         <div class="container">
             <h2>📚 지식 저장소</h2>
             <div class="knowledge-tabs">
-                <button class="tab-btn active" data-tab="cases">프로젝트 사례</button>
-                <button class="tab-btn" data-tab="guides">기술 가이드</button>
-                <button class="tab-btn" data-tab="tips">실무 노하우</button>
+                <button class="tab-btn active" data-tab="cases" onclick="switchTab('cases', this)">프로젝트 사례</button>
+                <button class="tab-btn" data-tab="guides" onclick="switchTab('guides', this)">기술 가이드</button>
+                <button class="tab-btn" data-tab="tips" onclick="switchTab('tips', this)">실무 노하우</button>
             </div>
             <div id="cases" class="tab-content active">
                 <div class="knowledge-grid">
-                    <article class="knowledge-item">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('precision')">
                         <div class="knowledge-badge">🏭 제조업</div>
                         <h3>정밀가공 불량률 50% 감소 사례</h3>
                         <p>30년 경력 기계가공 전문가가 전수한 품질관리 노하우</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 김철수 마이스터</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.10</span>
+                            <span><i class="fas fa-eye"></i> 156회</span>
                         </div>
                     </article>
-                    <article class="knowledge-item">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('farming')">
                         <div class="knowledge-badge">🌾 농업</div>
                         <h3>귀농 첫해 성공 스토리</h3>
                         <p>친환경 농법으로 유기농 인증까지 단숨에</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 박영희 농업인</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.08</span>
+                            <span><i class="fas fa-eye"></i> 89회</span>
                         </div>
                     </article>
-                    <article class="knowledge-item">
+                    <article class="knowledge-item" onclick="openKnowledgeDetail('architecture')">
                         <div class="knowledge-badge">🏗️ 건축</div>
                         <h3>인허가 절차 완전 정복</h3>
                         <p>신규 건축사를 위한 실무 A-Z 가이드</p>
                         <div class="knowledge-meta">
                             <span><i class="fas fa-user"></i> 이건축 건축사</span>
                             <span><i class="fas fa-calendar"></i> 2024.06.05</span>
+                            <span><i class="fas fa-eye"></i> 234회</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div id="guides" class="tab-content">
+                <div class="knowledge-grid">
+                    <article class="knowledge-item">
+                        <div class="knowledge-badge">⚙️ 기술</div>
+                        <h3>CNC 가공 기초부터 고급까지</h3>
+                        <p>40년 현장 경험이 담긴 CNC 가공 완전 가이드</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 김기계</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.12</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div id="tips" class="tab-content">
+                <div class="knowledge-grid">
+                    <article class="knowledge-item">
+                        <div class="knowledge-badge">💡 노하우</div>
+                        <h3>현장에서만 배울 수 있는 10가지 비법</h3>
+                        <p>책에서는 절대 알 수 없는 실무 핵심 노하우</p>
+                        <div class="knowledge-meta">
+                            <span><i class="fas fa-user"></i> 여러 전문가</span>
+                            <span><i class="fas fa-calendar"></i> 2024.06.01</span>
                         </div>
                     </article>
                 </div>
@@ -172,21 +217,21 @@
         <div class="container">
             <h2>🤝 지역별 커뮤니티</h2>
             <div class="community-grid">
-                <div class="community-card">
+                <div class="community-card" onclick="openCommunityDetail('gyeongbuk')">
                     <h3>🌾 경상북도 농어촌 활성화</h3>
                     <p>안동, 영주, 봉화 지역 농업인들의 지식 공유</p>
                     <div class="community-stats">
                         <span>멘토 12명</span> • <span>프로젝트 8개</span>
                     </div>
                 </div>
-                <div class="community-card">
+                <div class="community-card" onclick="openCommunityDetail('ulsan')">
                     <h3>🏭 울산 제조업 혁신</h3>
                     <p>자동차, 조선업 은퇴 전문가들의 경험 전수</p>
                     <div class="community-stats">
                         <span>멘토 18명</span> • <span>프로젝트 15개</span>
                     </div>
                 </div>
-                <div class="community-card">
+                <div class="community-card" onclick="openCommunityDetail('busan')">
                     <h3>🏢 부산 서비스업 창업</h3>
                     <p>관광, 물류업 베테랑들의 창업 지원</p>
                     <div class="community-stats">
@@ -211,16 +256,23 @@
                         <li><a href="#mentors">멘토 찾기</a></li>
                         <li><a href="#knowledge">지식 저장소</a></li>
                         <li><a href="#community">커뮤니티</a></li>
+                        <li><a href="rural.html">농어촌 활성화</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>연락처</h4>
                     <p><i class="fas fa-envelope"></i> info@awbaw24.com</p>
                     <p><i class="fas fa-phone"></i> 02-1234-5678</p>
+                    <div class="social-links">
+                        <a href="#" onclick="alert('GitHub: https://github.com/awbaw24/senior-knowledge-sharing')"><i class="fab fa-github"></i></a>
+                        <a href="#" onclick="alert('이메일: comensee24@gmail.com')"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License.</p>
+                <p>&copy; 2024 은퇴자 지식 공유 플랫폼. MIT License. 
+                   <a href="https://github.com/awbaw24/senior-knowledge-sharing" target="_blank" style="color: #ffd700;">GitHub에서 보기</a>
+                </p>
             </div>
         </div>
     </footer>
