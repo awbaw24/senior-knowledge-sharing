@@ -11,6 +11,7 @@ function initializeApp() {
     setupScrollEffects();
     loadInitialData();
     setupEventListeners();
+    checkEmailVerification(); // 이메일 확인 상태 체크
 }
 
 // 네비게이션 설정
@@ -486,6 +487,44 @@ function openModal(type) {
                 </form>
             </div>
         `;
+    } else if (type === 'email-verification') {
+        const email = localStorage.getItem('pendingVerificationEmail');
+        content = `
+            <div class="email-verification">
+                <h2>📧 이메일 인증</h2>
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📬</div>
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">인증 이메일이 발송되었습니다!</h3>
+                    <p style="margin-bottom: 2rem; color: #666;">
+                        <strong>${email}</strong><br>
+                        위 이메일 주소로 인증 링크를 발송했습니다.<br>
+                        이메일을 확인하고 인증 링크를 클릭해주세요.
+                    </p>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">📋 인증 절차</h4>
+                        <ol style="text-align: left; padding-left: 1rem;">
+                            <li>이메일 수신함을 확인하세요</li>
+                            <li>스팸함도 확인해보세요</li>
+                            <li>"이메일 인증" 제목의 메일을 찾으세요</li>
+                            <li>인증 링크를 클릭하세요</li>
+                        </ol>
+                    </div>
+                    
+                    <button onclick="simulateEmailVerification('${email}')" class="btn-primary" style="margin-right: 1rem;">
+                        ✅ 이메일 인증 완료 (데모)
+                    </button>
+                    <button onclick="resendVerificationEmail('${email}')" class="btn-secondary">
+                        📨 인증 이메일 재발송
+                    </button>
+                    
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: #888;">
+                        이메일이 오지 않나요? 
+                        <a href="#" onclick="resendVerificationEmail('${email}')" style="color: #667eea;">다시 발송</a>
+                    </p>
+                </div>
+            </div>
+        `;
     }
     
     showModal(content);
@@ -498,8 +537,22 @@ function handleLogin(event) {
     const formData = new FormData(event.target);
     const email = formData.get('email');
     
+    // 이메일 인증 상태 확인
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email);
+    
+    if (user && !user.emailVerified) {
+        closeModal();
+        showErrorMessage('이메일 인증이 필요합니다. 가입할 때 받은 인증 이메일을 확인해주세요.');
+        setTimeout(() => {
+            localStorage.setItem('pendingVerificationEmail', email);
+            openModal('email-verification');
+        }, 2000);
+        return;
+    }
+    
     closeModal();
-    showSuccessMessage(`${email}로 로그인되었습니다! (데모 버전)`);
+    showSuccessMessage(`${email}로 로그인되었습니다!`);
 }
 
 // 회원가입 처리
@@ -512,16 +565,181 @@ function handleSignup(event) {
         email: formData.get('email'),
         phone: formData.get('phone'),
         interest: formData.get('interest'),
-        timestamp: new Date().toISOString()
+        emailVerified: false, // 이메일 미인증 상태
+        timestamp: new Date().toISOString(),
+        verificationToken: generateVerificationToken()
     };
     
-    // 로컬 스토리지에 저장 (데모용)
+    // 이메일 중복 확인
     const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const existingUser = users.find(u => u.email === userData.email);
+    
+    if (existingUser) {
+        showErrorMessage('이미 가입된 이메일입니다.');
+        return;
+    }
+    
+    // 로컬 스토리지에 저장 (데모용)
     users.push(userData);
     localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('pendingVerificationEmail', userData.email);
     
     closeModal();
-    showSuccessMessage(`${userData.name}님, 회원가입이 완료되었습니다! 이메일을 확인해주세요.`);
+    
+    // 이메일 발송 시뮬레이션
+    sendVerificationEmail(userData.email, userData.verificationToken);
+    
+    setTimeout(() => {
+        openModal('email-verification');
+    }, 1000);
+}
+
+// 이메일 인증 토큰 생성
+function generateVerificationToken() {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
+// 인증 이메일 발송 시뮬레이션
+function sendVerificationEmail(email, token) {
+    console.log('=== 이메일 인증 발송 시뮬레이션 ===');
+    console.log(`받는 사람: ${email}`);
+    console.log(`제목: [은퇴자 지식공유] 이메일 인증을 완료해주세요`);
+    console.log(`내용: 
+안녕하세요! 은퇴자 지식공유 플랫폼입니다.
+
+회원가입을 환영합니다! 🎉
+
+아래 링크를 클릭하여 이메일 인증을 완료해주세요:
+https://awbaw24.github.io/senior-knowledge-sharing/website/verify?token=${token}
+
+인증 링크는 24시간 후 만료됩니다.
+
+감사합니다.
+은퇴자 지식공유 팀
+    `);
+    console.log('================================');
+    
+    showSuccessMessage(`${email}로 인증 이메일이 발송되었습니다! 이메일을 확인해주세요.`);
+}
+
+// 이메일 재발송
+function resendVerificationEmail(email) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email);
+    
+    if (user) {
+        sendVerificationEmail(email, user.verificationToken);
+        showSuccessMessage('인증 이메일을 다시 발송했습니다!');
+    }
+}
+
+// 이메일 인증 시뮬레이션 (데모용)
+function simulateEmailVerification(email) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = users.findIndex(u => u.email === email);
+    
+    if (userIndex !== -1) {
+        users[userIndex].emailVerified = true;
+        users[userIndex].verifiedAt = new Date().toISOString();
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.removeItem('pendingVerificationEmail');
+        
+        closeModal();
+        showSuccessMessage('🎉 이메일 인증이 완료되었습니다! 이제 모든 서비스를 이용하실 수 있습니다.');
+    }
+}
+
+// 페이지 로드 시 이메일 인증 상태 확인
+function checkEmailVerification() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    
+    if (token) {
+        // 실제 인증 처리
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = users.findIndex(u => u.verificationToken === token);
+        
+        if (userIndex !== -1) {
+            users[userIndex].emailVerified = true;
+            users[userIndex].verifiedAt = new Date().toISOString();
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            showSuccessMessage('🎉 이메일 인증이 완료되었습니다! 이제 로그인하실 수 있습니다.');
+            
+            // URL에서 토큰 제거
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else {
+            showErrorMessage('인증 링크가 유효하지 않거나 만료되었습니다.');
+        }
+    }
+}
+
+// 등록된 이메일 확인 페이지 열기
+function openRegisteredEmailsModal() {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    const content = `
+        <div class="registered-emails">
+            <h2>📧 등록된 이메일 목록</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+                현재 등록된 회원들의 이메일 인증 상태입니다.
+            </p>
+            <div class="email-list">
+                ${users.length === 0 ? 
+                    '<p style="text-align: center; color: #888;">등록된 사용자가 없습니다.</p>' :
+                    users.map(user => `
+                        <div class="email-item" style="
+                            padding: 1rem; 
+                            border: 1px solid #ddd; 
+                            border-radius: 8px; 
+                            margin-bottom: 1rem;
+                            ${user.emailVerified ? 'background: #f0f8f0;' : 'background: #fff8f0;'}
+                        ">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>${user.name}</strong><br>
+                                    <span style="color: #666;">${user.email}</span>
+                                </div>
+                                <div style="text-align: right;">
+                                    ${user.emailVerified ? 
+                                        '<span style="color: #28a745; font-weight: bold;">✅ 인증완료</span>' : 
+                                        `<span style="color: #ffc107; font-weight: bold;">⏳ 인증대기</span>
+                                         <br><button onclick="resendVerificationEmail('${user.email}')" 
+                                                    style="margin-top: 5px; padding: 2px 8px; font-size: 0.8rem;" 
+                                                    class="btn-secondary">재발송</button>`
+                                    }
+                                </div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #888;">
+                                가입일: ${new Date(user.timestamp).toLocaleDateString()}
+                                ${user.verifiedAt ? ` | 인증일: ${new Date(user.verifiedAt).toLocaleDateString()}` : ''}
+                            </div>
+                        </div>
+                    `).join('')
+                }
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button onclick="clearAllUsers()" class="btn-secondary" style="margin-right: 1rem;">
+                    🗑️ 전체 삭제 (테스트용)
+                </button>
+                <button onclick="closeModal()" class="btn-primary">
+                    닫기
+                </button>
+            </div>
+        </div>
+    `;
+    
+    showModal(content);
+}
+
+// 전체 사용자 데이터 삭제 (테스트용)
+function clearAllUsers() {
+    if (confirm('정말로 모든 사용자 데이터를 삭제하시겠습니까?')) {
+        localStorage.removeItem('users');
+        localStorage.removeItem('pendingVerificationEmail');
+        closeModal();
+        showSuccessMessage('모든 사용자 데이터가 삭제되었습니다.');
+    }
 }
 
 // 멘토 등록 처리
@@ -796,6 +1014,34 @@ function showSuccessMessage(message) {
     // 4초 후 제거
     setTimeout(() => {
         successDiv.remove();
+    }, 4000);
+}
+
+// 에러 메시지 표시
+function showErrorMessage(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #dc3545;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        z-index: 3000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        animation: slideDown 0.3s ease;
+        max-width: 90%;
+        text-align: center;
+    `;
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+    
+    document.body.appendChild(errorDiv);
+    
+    // 4초 후 제거
+    setTimeout(() => {
+        errorDiv.remove();
     }, 4000);
 }
 
