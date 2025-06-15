@@ -1,0 +1,370 @@
+# 🚫 Senior Knowledge Sharing Platform - Git Ignore
+# 민감한 정보, 빌드 결과물, 시스템 파일 제외
+
+# =============================================
+# 🔐 보안 및 환경 변수
+# =============================================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+config/secrets.json
+auth/credentials.json
+
+# =============================================
+# 🔑 API 키 및 인증 정보
+# =============================================
+**/api-keys.json
+**/credentials.json
+**/service-account.json
+**/firebase-adminsdk-*.json
+**/google-oauth-*.json
+**/.aws/
+**/.azure/
+**/.gcp/
+
+# =============================================
+# 📦 Node.js 의존성
+# =============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+.pnp
+.pnp.js
+package-lock.json
+yarn.lock
+
+# =============================================
+# 🏗️ 빌드 결과물
+# =============================================
+build/
+dist/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+*.min.js
+*.min.css
+*.min.html
+website/**/*.min.*
+coverage/
+.nyc_output/
+
+# =============================================
+# 🐳 Docker 및 컨테이너
+# =============================================
+.dockerignore
+Dockerfile.prod
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+volumes/
+data/
+
+# =============================================
+# 🗄️ 데이터베이스
+# =============================================
+*.db
+*.sqlite
+*.sqlite3
+database/data/
+postgres-data/
+mysql-data/
+mongodb-data/
+redis-data/
+backup-*.sql
+dump-*.sql
+
+# =============================================
+# 📝 로그 파일
+# =============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+access.log
+error.log
+app.log
+
+# =============================================
+# 🎯 IDE 및 에디터
+# =============================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================
+# 🖥️ 운영체제
+# =============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================
+# 📊 테스트 및 커버리지
+# =============================================
+coverage/
+.nyc_output/
+.coverage
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.junit.xml
+test-results/
+test-reports/
+lighthouse-report.*
+performance-report.*
+
+# =============================================
+# 📱 모바일 개발
+# =============================================
+# React Native
+.expo/
+.expo-shared/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+*.orig.*
+web-build/
+
+# =============================================
+# 🌐 웹 개발
+# =============================================
+# Webpack
+.webpack/
+webpack-stats.json
+
+# Parcel
+.parcel-cache/
+.cache/
+
+# Vite
+dist-ssr/
+*.local
+
+# =============================================
+# 🔄 CI/CD 및 배포
+# =============================================
+.github/workflows/*.secret
+deployment/secrets/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+*.terraform.lock.hcl
+.terraformrc
+terraform.rc
+
+# =============================================
+# 📊 모니터링 및 분석
+# =============================================
+.lighthouse/
+.audit/
+reports/
+monitoring/data/
+grafana/data/
+prometheus/data/
+
+# =============================================
+# 🎨 에셋 및 미디어
+# =============================================
+uploads/
+temp/
+tmp/
+.tmp/
+media/originals/
+*.tmp.jpg
+*.tmp.png
+*.tmp.gif
+*_backup.*
+
+# =============================================
+# 🔧 개발 도구
+# =============================================
+.eslintcache
+.stylelintcache
+.sass-cache/
+.connect.lock
+.grunt/
+bower_components/
+.lock-wscript
+.wafpickle-*
+.tgz
+
+# =============================================
+# 📦 패키지 매니저
+# =============================================
+.pnpm-store/
+.rush/
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# =============================================
+# 🚀 배포 및 서버
+# =============================================
+.vercel
+.netlify/
+.firebase/
+.aws-sam/
+.serverless/
+.fusebox/
+.dynamodb/
+
+# =============================================
+# 📋 문서 및 메모
+# =============================================
+notes/
+docs/temp/
+*.draft.md
+*_backup.md
+meeting-notes/
+personal-notes/
+
+# =============================================
+# 🧪 실험 및 임시 파일
+# =============================================
+experiments/
+playground/
+sandbox/
+test-data/
+temp-*
+backup-*
+old-*
+archive-*
+
+# =============================================
+# 🔍 디버깅
+# =============================================
+.debug/
+debug.log
+*.debug
+*.trace
+heap-snapshot-*
+.prof
+
+# =============================================
+# 📧 이메일 템플릿 (개발용)
+# =============================================
+email-templates/test/
+email-previews/
+
+# =============================================
+# 🎯 특정 파일 제외
+# =============================================
+# 개발 중 임시 파일들
+website/test.html
+website/debug.js
+website/temp.css
+*/temp.*
+*/debug.*
+*/test.*
+
+# 백업 파일들
+*.backup
+*.bak
+*.old
+*.orig
+
+# 압축 파일들 (배포용 제외)
+*.zip
+*.tar.gz
+*.rar
+!release-*.zip
+!dist-*.tar.gz
+
+# =============================================
+# ✅ 포함할 파일들 (예외)
+# =============================================
+!.gitkeep
+!.env.example
+!.github/workflows/*.yml
+!.github/workflows/*.yaml
+!Dockerfile*
+!docker-compose*.yml
+!package.json
+!README.md
+!LICENSE
