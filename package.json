@@ -1,0 +1,135 @@
+{
+  "name": "senior-knowledge-sharing",
+  "version": "1.0.0",
+  "description": "🏛️ 은퇴자 지식 공유 플랫폼 - 평생의 지혜를 다음 세대에게 전하는 지속가능한 지식 전수 생태계",
+  "main": "website/script.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "live-server website --port=8080 --host=0.0.0.0 --no-browser",
+    "build": "npm run build:css && npm run build:js && npm run build:html",
+    "build:css": "cleancss -o website/styles.min.css website/styles.css",
+    "build:js": "terser website/script.js --compress --mangle -o website/script.min.js",
+    "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css --minify-js website/index.html -o website/index.min.html",
+    "dev": "concurrently \"npm run watch:css\" \"npm run watch:js\" \"npm run serve\"",
+    "watch:css": "nodemon --watch website/styles.css --exec \"npm run build:css\"",
+    "watch:js": "nodemon --watch website/script.js --exec \"npm run build:js\"",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "htmlhint website/*.html",
+    "lint:css": "csslint website/*.css",
+    "lint:js": "jshint website/*.js",
+    "lint:fix": "npm run lint:js -- --fix",
+    "test": "npm run lint && npm run test:lighthouse",
+    "test:lighthouse": "lhci autorun --collect.url=http://localhost:8080",
+    "docker:build": "docker build -t senior-knowledge-sharing .",
+    "docker:build:dev": "docker build -t senior-knowledge-sharing:dev --target development .",
+    "docker:run": "docker run -p 80:80 senior-knowledge-sharing",
+    "docker:run:dev": "docker run -p 8080:8080 -v $(pwd)/website:/app/website senior-knowledge-sharing:dev",
+    "docker:compose:up": "docker-compose up -d",
+    "docker:compose:dev": "docker-compose --profile dev up -d",
+    "docker:compose:full": "docker-compose --profile full up -d",
+    "docker:compose:down": "docker-compose down -v",
+    "deploy": "npm run build && npm run docker:build",
+    "deploy:staging": "npm run build && docker build -t senior-knowledge-sharing:staging .",
+    "clean": "rm -rf website/*.min.* build/ dist/ node_modules/.cache",
+    "format": "prettier --write website/*.{html,css,js} *.{md,json,yml,yaml}",
+    "analyze": "npm run analyze:bundle && npm run analyze:lighthouse",
+    "analyze:bundle": "bundlesize",
+    "analyze:lighthouse": "lighthouse http://localhost:8080 --output html --output-path ./reports/lighthouse-report.html",
+    "security": "npm audit && docker run --rm -v $(pwd):/app securecodewarrior/snyk test",
+    "backup": "tar -czf backup-$(date +%Y%m%d_%H%M%S).tar.gz website/ knowledge-base/ templates/",
+    "release": "npm version patch && git push && git push --tags",
+    "precommit": "npm run lint && npm run test",
+    "postinstall": "echo '✅ 설치 완료! npm run dev로 개발 서버를 시작하세요.'"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.13.0",
+    "bundlesize": "^0.18.1",
+    "clean-css-cli": "^5.6.2",
+    "concurrently": "^8.2.2",
+    "csslint": "^1.0.5",
+    "html-minifier-terser": "^7.2.0",
+    "htmlhint": "^1.1.4",
+    "jshint": "^2.13.6",
+    "lighthouse": "^11.4.0",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "terser": "^5.26.0"
+  },
+  "bundlesize": [
+    {
+      "path": "website/styles.css",
+      "maxSize": "50 kB"
+    },
+    {
+      "path": "website/script.js",
+      "maxSize": "100 kB"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm test"
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awbaw24/senior-knowledge-sharing.git"
+  },
+  "keywords": [
+    "senior",
+    "knowledge-sharing",
+    "mentoring",
+    "agriculture",
+    "rural-development",
+    "technology-transfer",
+    "korean",
+    "retirement",
+    "wisdom",
+    "experience",
+    "platform",
+    "community",
+    "manufacturing",
+    "construction",
+    "services"
+  ],
+  "author": {
+    "name": "awbaw24",
+    "email": "comensee24@gmail.com",
+    "url": "https://github.com/awbaw24"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/awbaw24/senior-knowledge-sharing/issues"
+  },
+  "homepage": "https://awbaw24.github.io/senior-knowledge-sharing/website/",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "volta": {
+    "node": "18.19.0",
+    "npm": "9.9.0"
+  }
+}
