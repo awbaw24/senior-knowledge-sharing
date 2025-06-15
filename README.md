@@ -129,17 +129,15 @@
 ## 📞 참여 및 문의
 
 ### 🔗 주요 링크
-- **프로젝트 Issues**: [새로운 아이디어나 질문 등록](../../issues)
-- **토론 게시판**: [자유로운 의견 교환](../../discussions)
-- **기여 가이드**: [CONTRIBUTING.md](CONTRIBUTING.md)
+- **공식 웹사이트**: https://awbaw24.github.io/senior-knowledge-sharing/
 
 ### 📧 연락처
-- **프로젝트 관리자**: [이메일 주소]
+- **프로젝트 관리자**: info@awbaw24.com
 - **분야별 담당자**:
-  - 🏗️ 건축/토목: [담당자 연락처]
-  - ⚙️ 제조업: [담당자 연락처]
-  - 🌾 농업/어업: [담당자 연락처]
-  - 🏢 서비스업: [담당자 연락처]
+  - 🏗️ 건축/토목: construction@awbaw24.com
+  - ⚙️ 제조업: manufacturing@awbaw24.com
+  - 🌾 농업/어업: agriculture@awbaw24.com
+  - 🏢 서비스업: services@awbaw24.com
 
 ## 🏆 성공 사례
 
